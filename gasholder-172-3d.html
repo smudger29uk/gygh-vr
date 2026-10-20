@@ -185,7 +185,6 @@ ul.plain li{margin:4px 0}
       <label class="check"><input type="checkbox" data-layer="finials" checked><span>Column finials and capping plates</span></label>
 
       <h2>Works and site</h2>
-      <label class="check"><input type="checkbox" data-layer="access" checked><span>Redundant vertical access<small>Stair, ladders and landings the drawings show for permanent removal. Bay position is indicative.</small></span></label>
       <label class="check"><input type="checkbox" data-layer="site" checked><span>Site context<small>Roads, compound, lorry yard and houses traced by eye from the aerial, so approximate. North is the -Z direction, up the plan view.</small></span></label>
       <label class="check"><input type="checkbox" data-layer="zone"><span>Dropped object zone<small>Illustrative ring. Set the real distance from your risk assessment.</small></span></label>
       <div class="field"><div class="lbl"><label for="rZone">Zone width beyond column faces</label><output id="oZone">5 m</output></div>
@@ -422,7 +421,6 @@ Object.keys(PAL).forEach(function(k){
     cond:new THREE.MeshStandardMaterial({color:col(COND[k]),map:NOISE,roughness:0.6,metalness:0.05})
   };
 });
-var ACCESS_MAT=new THREE.MeshStandardMaterial({color:col('#3b82f6'),transparent:true,opacity:0.72,roughness:0.5,metalness:0.1,depthWrite:false});
 
 /* ---------------- Scene graph ---------------- */
 var root=new THREE.Group(); scene.add(root);
@@ -604,25 +602,6 @@ function isect(a,b,c,d){
   }
   addMesh(g,'pbrace','bracing',tiers[3],mats);
   addMesh(sg,'spl','bracing',tiers[3],spl);
-})();
-
-/* ---- Redundant vertical access (indicative, bay 12) ---- */
-(function(){
-  var zOut=0.95, zs=[0.2,8.2,16.9,25.8], bm=bayMatrix(MOD_BAY,0);
-  for(var t=1;t<=3;t++){
-    var list=[], y0=zs[t-1], y1=zs[t];
-    [-0.22,0.22].forEach(function(x){list.push(bx(0.04,y1-y0,0.04,x,(y0+y1)/2,zOut))});
-    for(var y=y0+0.3;y<y1;y+=0.3) list.push(bx(0.44,0.025,0.025,0,y,zOut));
-    var yl=y1;
-    list.push(bx(1.4,0.04,1.0,0,yl,zOut+0.2));
-    [[-0.7,-0.5],[0.7,-0.5],[-0.7,0.5],[0.7,0.5]].forEach(function(p){list.push(bx(0.04,1.0,0.04,p[0],yl+0.5,zOut+0.2+p[1]))});
-    list.push(bx(1.4,0.04,0.04,0,yl+1.0,zOut+0.7));
-    list.push(bx(0.04,0.04,1.0,-0.7,yl+1.0,zOut+0.2));
-    list.push(bx(0.04,0.04,1.0,0.7,yl+1.0,zOut+0.2));
-    var g=merge(list); g.applyMatrix4(bm);
-    var mesh=new THREE.Mesh(g,ACCESS_MAT); mesh.userData.layer='access'; mesh.castShadow=false;
-    tiers[t].add(mesh); layerMeshes.access.push(mesh);
-  }
 })();
 
 /* ---------------- Ground, shadows and site context ---------------- */
