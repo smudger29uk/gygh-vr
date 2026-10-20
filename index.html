@@ -683,7 +683,7 @@ function addSolid(m,w,h,d){m.updateMatrix(); siteSolids.push({inv:new THREE.Matr
 
   /* Roads and footways */
   /* Boundary wall: distance from the holder wall (radius 14.9, 29.8 m diameter) is an estimate, so it is one setting. Roads and footways follow it. */
-  var WALL_GAP=2.5, WALL=14.9+WALL_GAP;
+  var WALL_GAP=3.2, WALL=14.9+WALL_GAP;
   plane(WALL+7,20,10,260,roadM);
   plane(WALL+1,20,2.2,260,walkM,0.025); plane(WALL+13,20,2.2,260,walkM,0.025);
   plane(-30,-WALL-5.5,130,8,roadM);
