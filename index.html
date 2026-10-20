@@ -186,7 +186,7 @@ ul.plain li{margin:4px 0}
 
       <h2>Works and site</h2>
       <label class="check"><input type="checkbox" data-layer="access" checked><span>Redundant vertical access<small>Stair, ladders and landings the drawings show for permanent removal. Bay position is indicative.</small></span></label>
-      <label class="check"><input type="checkbox" data-layer="site" checked><span>Site context<small>Roads, compound, demolished holder, lorry yard and houses traced by eye from the aerial, so approximate. North is the +X direction.</small></span></label>
+      <label class="check"><input type="checkbox" data-layer="site" checked><span>Site context<small>Roads, compound, lorry yard and houses traced by eye from the aerial, so approximate. North is the +X direction.</small></span></label>
       <label class="check"><input type="checkbox" data-layer="zone"><span>Dropped object zone<small>Illustrative ring. Set the real distance from your risk assessment.</small></span></label>
       <div class="field"><div class="lbl"><label for="rZone">Zone width beyond column faces</label><output id="oZone">5 m</output></div>
         <input type="range" id="rZone" min="1" max="30" step="0.5" value="5"></div>
@@ -710,16 +710,6 @@ function addSolid(m,w,h,d){m.updateMatrix(); siteSolids.push({inv:new THREE.Matr
     var x1=-33.6,z1=-WALL,x2=-17.2,z2=89, len=Math.hypot(x2-x1,z2-z1);
     var w=new THREE.Mesh(new THREE.BoxGeometry(len,2.4,0.3),mat('#8a7f76')); w.position.set((x1+x2)/2,1.2,(z1+z2)/2); w.rotation.y=-Math.atan2(z2-z1,x2-x1); w.castShadow=true; site.add(w); addSolid(w,len,2.4,0.3);
   })();
-
-  /* Demolished holder: low remnant wall, floor and debris */
-  var dh=new THREE.Mesh(new THREE.CylinderGeometry(14.7,14.7,2.2,72,1,true),mat('#8a5a3a',0.9,{side:THREE.DoubleSide})); dh.position.set(-1,1.1,40.5); site.add(dh);
-  var df=new THREE.Mesh(new THREE.CircleGeometry(14.6,48),mat('#4a4038',1)); df.rotation.x=-Math.PI/2; df.position.set(-1,0.05,40.5); site.add(df);
-  var debrisM=mat('#7a4a2e');
-  for(var i=0;i<16;i++){
-    var a=i*2.399, r=1+((i*37)%100)/100*9, h=0.4+((i*53)%100)/100*1.4;
-    box(-1+r*Math.cos(a),40.5+r*Math.sin(a),1.2+(i%3)*0.6,1+(i%2)*0.8,h,debrisM);
-  }
-  lab('Demolished gasholder',-1,5,40.5);
 
   /* Buildings read from the aerial */
   box(-3.8,72.4,10,12,3.5,greenM); lab('Green roof building',-3.8,6,72.4);
