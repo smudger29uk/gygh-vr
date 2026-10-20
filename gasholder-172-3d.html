@@ -224,6 +224,7 @@ ul.plain li{margin:4px 0}
       <label class="check"><input type="checkbox" data-sl="stairs" checked><span>Stair towers</span></label>
       <label class="check"><input type="checkbox" data-sl="hoist" checked><span>Hoist masts</span></label>
       <label class="check"><input type="checkbox" data-sl="prot" checked><span>Asset and building protection</span></label>
+      <label class="check"><input type="checkbox" data-sl="lifts" checked><span>Lift numbers<small>Green tags on the east side, numbered as in the erection stage</small></span></label>
 
       <h2>Colours and markers</h2>
       <label class="check"><input type="checkbox" id="sZone"><span>Colour by BDS zone</span></label>
@@ -782,7 +783,7 @@ var scafPlan=new THREE.Group(); scafPlan.visible=false; scene.add(scafPlan);
 var STAGES=17, LV=[2,4,6,8,10,12.5,15,17,19,21,23.5,26,28,29,30.5,32], LEV=[0.2].concat(LV), DECK_TOP=28.01, RO=17.59;
 var ZCOL={ring:'#3FAE49',cage:'#E5645F',fan:'#D61EC2',tf:'#B88ACB',atpac:'#F2961C',hoist:'#8A7A2E',stair:'#3FAE49',roof:'#3FAE49'};
 var ZLAYER={ring:'ring',cage:'cage',roof:'roof',stair:'stairs',atpac:'prot',tf:'prot',hoist:'hoist',fan:'fans'};
-var SL={ring:true,cage:true,roof:true,wrap:true,decks:false,fans:true,prot:true,stairs:true,hoist:true};
+var SL={ring:true,cage:true,roof:true,wrap:true,decks:false,fans:true,prot:true,stairs:true,hoist:true,lifts:true};
 var FANS=[];   /* catch fans removed from the model; was [[-37,-10],[56,125],[138,160]] (bearing ranges, degrees) */
 var scafMeshes=[], scafPick=[], CAGE_CELLS=[], scafStage=STAGES, scafOn=true, scafVisible=true, scafNotesOn=true, planOn=false;
 function roofH(x){return 32-3*Math.min(Math.abs(x),17.6)/17.6}
@@ -1031,6 +1032,13 @@ mkI(beamG,BM,TM.tf.base,{kind:'tube',zone:'tf',layers:['prot']});
   label('AT-PAC protection',4.8,17.3); label('AT-PAC protection',11.5,18); label('Beamed protection',7.7,24.4);
 })();
 
+/* Lift numbers: one green tag per lift at its platform height, in a strip beside the outer band on the +Z side. Shown once that lift is erected. */
+var liftLabels=[];
+LV.forEach(function(y,k){
+  var sp=textSprite(String(k+1),1.3,{fs:44,bg:'#3FAE49',fg:'#ffffff',border:'#ffffff',round:20});
+  sp.position.set(0,y,RO+0.7); sp.renderOrder=22; sp.userData.lift=k+1; scaf.add(sp); liftLabels.push(sp);
+});
+
 /* Visibility, erection scafStage and colour modes */
 function stageLabel(s){return s<=0?'Not started':(s>=STAGES?'Complete with roof':'Lift '+s+' ('+LV[s-1]+' m)')}
 function refreshScaf(){
@@ -1042,6 +1050,7 @@ function refreshScaf(){
     if(ok&&m.userData.roofish) ok=(scafStage>=STAGES);
     m.visible=ok;
   });
+  liftLabels.forEach(function(sp){sp.visible=scafVisible&&SL.lifts&&scafStage>=sp.userData.lift});
   scafPlan.visible=scafVisible&&planOn;
   scafClip.constant=(scafStage>=STAGES)?200:(scafStage<=0?-1:LV[scafStage-1]+0.02);
 }
@@ -1398,7 +1407,7 @@ var LAYER_BTNS=[
   ['Access scaffold',chk('#sOn')], ['Decks',chk('[data-sl="decks"]')], ['Site context',chk('[data-layer="site"]')],
   ['Finding markers',chk('#cPins')], ['Scaffold notes',chk('#sNotes')], ['Condition colours',chk('#cCond')], ['Column numbers',chk('#cLabels')]
 ];
-var PART_BTNS=[['Ring','ring'],['Birdcage','cage'],['Roof','roof'],['Sheeting','wrap'],['Stairs','stairs'],['Hoists','hoist'],['Protection','prot']]
+var PART_BTNS=[['Ring','ring'],['Birdcage','cage'],['Roof','roof'],['Sheeting','wrap'],['Stairs','stairs'],['Hoists','hoist'],['Protection','prot'],['Lift numbers','lifts']]
   .map(function(p){return [p[0],chk('[data-sl="'+p[1]+'"]')]});
 function setStage(v){var e=$('#rStage'); v=Math.max(0,Math.min(STAGES,Math.round(v))); if(+e.value===v) return; e.value=v; e.dispatchEvent(new Event('input',{bubbles:true}))}
 
