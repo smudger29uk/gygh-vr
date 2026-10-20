@@ -35,14 +35,14 @@ You cannot teleport or walk to a point that is inside a column, a scaffold stand
 
 ## Performance (draw calls and triangles)
 
-Measured with three.js `renderer.info`, main pass only, default state (decks off).
+Measured with three.js `renderer.info`, main pass only, default state (decks off). The updated rows were re-measured after the later model edits (catch fans, demolished holder and redundant ladders removed, lift numbers and bridging pans added).
 
 | Case | Draw calls | Triangles | Shadow pass |
 | --- | --- | --- | --- |
 | Original page, desktop | 129 | 468,602 | 2048 px map, 72 casters |
-| Updated page, desktop | 100 | 468,684 | 2048 px map, 43 casters |
-| Updated page, VR, per eye | 127 | 367,028 | none |
-| Updated page, VR, per eye, Decks on | 132 | 388,772 | none |
+| Updated page, desktop | 104 | 465,986 | 2048 px map, 43 casters |
+| Updated page, VR, per eye | 132 | 364,738 | none |
+| Updated page, VR, per eye, Decks on | 137 | 400,402 | none |
 
 What changed: static site meshes that share a material are batched (29 fewer draws; the triangle count is unchanged, the small rise on desktop is because a batched mesh is no longer culled piecemeal). In VR the shadow pass is skipped, scaffold tubes use open-ended cylinders (about 100,000 fewer triangles per eye), and the render scale defaults to the headset's recommended size. The VR draw calls are higher than desktop because of the 23 in-world markers and the head and hand items. No model geometry, drawing data or `[VERIFY]` note was changed.
 

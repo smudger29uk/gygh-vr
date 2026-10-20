@@ -874,8 +874,10 @@ var BR={ring:[],cage:[],prot:[]}, SP=[], BM=[];
       }
     });
   });
+  /* Birdcage pans on the top lift only. The external ring and inner ring bands keep pans on every lift. */
+  var CAGE_TOP=LEV.filter(function(y){return y<DECK_TOP}).pop();
   CAGE_CELLS.forEach(function(p){
-    LEV.forEach(function(y,lv){ if(lv>0&&y<DECK_TOP) DK.cage.push(deckM(p[0],y+0.03,p[1],0,c-0.06,c-0.06)) });
+    DK.cage.push(deckM(p[0],CAGE_TOP+0.03,p[1],0,c-0.06,c-0.06));
   });
 })();
 
@@ -891,6 +893,22 @@ var BR={ring:[],cage:[],prot:[]}, SP=[], BM=[];
     }
   }
 });
+
+/* Pans bridging the gap between the inner and outer bands (15.09 to 16.5 m), left out around each column */
+(function(){
+  var n=168, r0=15.09, r1=16.5, rm=(r0+r1)/2, clear=0.41+0.12+0.3, i, c, k, am, dx, dz, d, near;
+  var cols=[]; for(c=1;c<=N;c++) cols.push([R*Math.cos(theta(c)),R*Math.sin(theta(c))]);
+  for(i=0;i<n;i++){
+    am=(i+0.5)*TWO/n; var cx=rm*Math.cos(am), cz=rm*Math.sin(am);
+    near=false;
+    for(c=0;c<cols.length&&!near;c++){dx=cx-cols[c][0]; dz=cz-cols[c][1]; d=Math.sqrt(dx*dx+dz*dz); near=d<clear}
+    if(near) continue;
+    var top=roofH(r1*Math.cos(am));
+    LEV.forEach(function(y,k){
+      if(k>0&&y<DECK_TOP&&y<=top) DK.ring.push(deckM(cx,y+0.03,cz,Math.PI/2-am,2*rm*Math.sin(Math.PI/n)-0.02,(r1-r0)-0.08));
+    });
+  }
+})();
 
 /* System stair towers (positions to be confirmed on site per the drawing) */
 [280,132].forEach(function(bd){   /* second tower moved round 20 degrees (was 112) to clear the boundary wall */
