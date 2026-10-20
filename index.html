@@ -221,7 +221,7 @@ ul.plain li{margin:4px 0}
       <label class="check"><input type="checkbox" data-sl="cage" checked><span>Internal birdcage<small>2.57 m grid, X braced to the 8th lift on the perimeter</small></span></label>
       <label class="check"><input type="checkbox" data-sl="roof" checked><span>Roof trusses<small>Eaves 29 m, ridge and gable ends 32 m</small></span></label>
       <label class="check"><input type="checkbox" data-sl="wrap" checked><span>Encapsulation sheeting</span></label>
-      <label class="check"><input type="checkbox" data-sl="decks"><span>Decks<small>Boarded lifts are not stated, so every lift is shown when this is ticked</small></span></label>
+      <label class="check"><input type="checkbox" data-sl="decks"><span>Decks<small>Steel pans. Boarded lifts are not stated, so every lift is shown when this is ticked</small></span></label>
       <label class="check"><input type="checkbox" data-sl="stairs" checked><span>Stair towers</span></label>
       <label class="check"><input type="checkbox" data-sl="hoist" checked><span>Hoist masts</span></label>
       <label class="check"><input type="checkbox" data-sl="fans" checked><span>Catch fans at 8 m</span></label>
@@ -825,7 +825,7 @@ function smat(hex,o){return new THREE.MeshStandardMaterial(Object.assign({color:
 var TM={},DM={};
 Object.keys(ZCOL).forEach(function(z){
   TM[z]={base:smat('#aab3bd'),zone:smat(ZCOL[z])};
-  DM[z]={base:smat('#b88a55',{metalness:0.05,roughness:0.85}),zone:smat(ZCOL[z],{metalness:0.05,roughness:0.85})};
+  DM[z]={base:smat('#aab1b8',{metalness:0.3,roughness:0.55}),zone:smat(ZCOL[z],{metalness:0.05,roughness:0.85})};
 });
 var BRM=smat('#c8433a',{metalness:0.2}), SPM=smat('#37a84a',{metalness:0.2});
 var WRAP=new THREE.MeshStandardMaterial({color:col('#f4f7fb'),transparent:true,opacity:0.17,side:THREE.DoubleSide,roughness:0.9,metalness:0,depthWrite:false,clippingPlanes:[scafClip]});
