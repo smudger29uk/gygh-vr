@@ -682,20 +682,21 @@ function addSolid(m,w,h,d){m.updateMatrix(); siteSolids.push({inv:new THREE.Matr
   function lab(t,x,y,z){var s=textSprite(t,1.5,{fs:40}); s.position.set(x,y,z); site.add(s)}
 
   /* Roads and footways */
-  plane(23,20,10,260,roadM);
-  plane(17,20,2.2,260,walkM,0.025); plane(29,20,2.2,260,walkM,0.025);
-  plane(-30,-21,130,8,roadM);
-  plane(-30,-16,130,2.2,walkM,0.025); plane(-30,-26,130,2.2,walkM,0.025);
+  /* Boundary wall 1.8 m outside the 29.8 m holder (radius 14.9), so 16.7 m from the centre. Roads and footways are shifted to suit. */
+  plane(23.7,20,10,260,roadM);
+  plane(17.7,20,2.2,260,walkM,0.025); plane(29.7,20,2.2,260,walkM,0.025);
+  plane(-30,-22.2,130,8,roadM);
+  plane(-30,-17.2,130,2.2,walkM,0.025); plane(-30,-27.2,130,2.2,walkM,0.025);
   plane(-30,93,130,8,roadM);
   plane(-105,40,10,260,roadM);
-  var l1=flatLabel('Admiralty Rd',34,4); l1.rotation.z=-Math.PI/2; l1.position.set(23,0.04,62); site.add(l1);
-  var l2=flatLabel('Barrack Rd',34,4); l2.position.set(-42,0.04,-21); site.add(l2);
+  var l1=flatLabel('Admiralty Rd',34,4); l1.rotation.z=-Math.PI/2; l1.position.set(23.7,0.04,62); site.add(l1);
+  var l2=flatLabel('Barrack Rd',34,4); l2.position.set(-42,0.04,-22.2); site.add(l2);
   var l3=flatLabel('Sutton Rd',30,4); l3.position.set(-45,0.04,93); site.add(l3);
   var l4=flatLabel('S Denes Rd',30,4); l4.rotation.z=-Math.PI/2; l4.position.set(-105,0.04,70); site.add(l4);
 
   /* Holder compound (soil) and the lorry yard to the south, split by the wall line */
   plane(-57,36,80,106,yardM,0.012);
-  poly([[-33.6,-15.5],[-17.2,89],[17,89],[17,-15.5]],soilM,0.016);
+  poly([[-33.6,-16.7],[-17.2,89],[16.7,89],[16.7,-16.7]],soilM,0.016);
 
   /* Fence along Admiralty Rd and Barrack Rd, wall along the yard line */
   var fc=document.createElement('canvas'); fc.width=256; fc.height=128; var g=fc.getContext('2d');
@@ -707,9 +708,9 @@ function addSolid(m,w,h,d){m.updateMatrix(); siteSolids.push({inv:new THREE.Matr
     var m=new THREE.Mesh(new THREE.PlaneGeometry(len,2.4),new THREE.MeshBasicMaterial({map:t,transparent:true,alphaTest:0.4,side:THREE.DoubleSide}));
     m.position.set((x1+x2)/2,1.2,(z1+z2)/2); m.rotation.y=-Math.atan2(z2-z1,x2-x1); site.add(m);
   }
-  fence(16,-15.5,16,89); fence(16,-15.5,-33.6,-15.5);
+  fence(16.7,-16.7,16.7,89); fence(16.7,-16.7,-33.6,-16.7);
   (function(){
-    var x1=-33.6,z1=-15.5,x2=-17.2,z2=89, len=Math.hypot(x2-x1,z2-z1);
+    var x1=-33.6,z1=-16.7,x2=-17.2,z2=89, len=Math.hypot(x2-x1,z2-z1);
     var w=new THREE.Mesh(new THREE.BoxGeometry(len,2.4,0.3),mat('#8a7f76')); w.position.set((x1+x2)/2,1.2,(z1+z2)/2); w.rotation.y=-Math.atan2(z2-z1,x2-x1); w.castShadow=true; site.add(w); addSolid(w,len,2.4,0.3);
   })();
 
