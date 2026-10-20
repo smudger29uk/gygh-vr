@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gasholder No. 172, Great Yarmouth: 3D guide frame model</title>
+<style>
+:root{
+  --bg0:#e8edf4; --bg1:#c9d4e4; --panel:#ffffff; --panel2:#f1f4f9; --ink:#14233b; --muted:#53647f;
+  --line:#d2d9e4; --brand:#1C355D; --hot:#DC5F20; --act:#1C355D; --actink:#ffffff; --focus:#DC5F20;
+  --pinbg:#ffffff; --pinink:#14233b; --card:#ffffff; --shadow:0 6px 24px rgba(20,35,59,.18);
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  background:#1C355D;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg0:#09111f; --bg1:#18305a; --panel:#10203a; --panel2:#17294a; --ink:#e7edf7; --muted:#9db0cc;
+    --line:#26395a; --act:#2f5ea8; --actink:#ffffff; --pinbg:#10203a; --pinink:#e7edf7; --card:#10203a;
+    --shadow:0 6px 24px rgba(0,0,0,.5); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg0:#09111f; --bg1:#18305a; --panel:#10203a; --panel2:#17294a; --ink:#e7edf7; --muted:#9db0cc;
+  --line:#26395a; --act:#2f5ea8; --actink:#ffffff; --pinbg:#10203a; --pinink:#e7edf7; --card:#10203a;
+  --shadow:0 6px 24px rgba(0,0,0,.5); color-scheme:dark;
+}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{height:100%;margin:0;font-family:Calibri,Arial,sans-serif;font-size:14px;line-height:1.4;color:var(--ink);background:var(--bg0);overflow:hidden}
+*{box-sizing:border-box}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+#app{display:grid;grid-template-columns:350px 1fr;grid-template-rows:auto 1fr;height:100%;min-height:0}
+header{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;background:#1C355D;color:#fff;border-bottom:3px solid var(--hot)}
+header h1{margin:0;font-size:18px;font-weight:700;letter-spacing:.1px}
+header p{margin:2px 0 0;font-size:12.5px;color:#c8d3e6}
+.hbtns{display:flex;gap:8px;flex-shrink:0}
+.hbtn{background:transparent;border:1px solid #6d86b0;color:#fff;border-radius:5px;padding:6px 10px;cursor:pointer}
+.hbtn:hover{background:#27487d}
+.onlyMobile{display:none}
+#side{grid-row:2;grid-column:1;background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+.tabs{display:flex;border-bottom:1px solid var(--line);flex-shrink:0}
+.tabs button{flex:1;padding:10px 2px;font-size:13px;background:transparent;border:0;border-bottom:3px solid transparent;cursor:pointer;color:var(--muted);font-weight:600}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--hot)}
+.tabpanel{padding:14px 16px 24px;overflow:auto;flex:1;min-height:0}
+.tabpanel[hidden]{display:none}
+h2{font-size:13.5px;margin:18px 0 8px;font-weight:700}
+h2:first-child{margin-top:0}
+.grid5{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.btn{background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:7px 8px;cursor:pointer;text-align:center}
+.btn:hover{border-color:var(--hot)}
+.btn[aria-pressed="true"]{background:var(--act);color:var(--actink);border-color:var(--act)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:8px 0}
+.row label{flex:1}
+.row output{min-width:54px;text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--hot)}
+.field{margin:10px 0}
+.field .lbl{display:flex;justify-content:space-between;margin-bottom:2px}
+.check{display:flex;gap:8px;align-items:flex-start;margin:7px 0;cursor:pointer}
+.check input{margin-top:3px;accent-color:var(--hot)}
+.check small{display:block;color:var(--muted);font-size:12px}
+.note{color:var(--muted);font-size:12.5px;margin:8px 0}
+.warn{border-left:3px solid var(--hot);background:var(--panel2);padding:8px 10px;margin:10px 0;font-size:12.5px}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0 12px}
+th,td{text-align:left;padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:700;color:var(--muted)}
+td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+ul.plain{margin:6px 0 10px;padding-left:18px}
+ul.plain li{margin:4px 0}
+.legend{list-style:none;padding:0;margin:6px 0 12px}
+.legend li{display:flex;gap:9px;align-items:flex-start;margin:6px 0;font-size:12.5px}
+.sw{flex:0 0 16px;height:16px;border-radius:3px;margin-top:1px;border:1px solid rgba(0,0,0,.25)}
+.flist{list-style:none;margin:6px 0;padding:0}
+.flist button{width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);padding:7px 2px;cursor:pointer;display:flex;gap:8px}
+.flist button:hover{background:var(--panel2)}
+.flist .no{flex:0 0 24px;height:24px;border-radius:50%;border:2px solid var(--hot);display:grid;place-items:center;font-size:11px;font-weight:700}
+.flist .no.g{border-style:dashed}
+.flist small{display:block;color:var(--muted)}
+#stage{grid-row:2;grid-column:2;position:relative;min-width:0;min-height:0;overflow:hidden;background:radial-gradient(ellipse at 50% 35%,var(--bg1),var(--bg0) 75%)}
+#stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+#pins{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.pin{position:absolute;left:0;top:0;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;border:2.5px solid var(--hot);background:var(--pinbg);color:var(--pinink);font-size:11px;font-weight:700;display:grid;place-items:center;cursor:pointer;pointer-events:auto;padding:0;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.pin[aria-current="true"]{background:var(--hot);color:#fff;transform-origin:center;box-shadow:0 0 0 5px rgba(220,95,32,.35)}
+.pin[hidden]{display:none}
+#hud{position:absolute;left:12px;bottom:12px;max-width:min(520px,calc(100% - 24px));font-size:12px;color:var(--muted);background:color-mix(in srgb,var(--panel) 82%,transparent);border:1px solid var(--line);border-radius:6px;padding:6px 10px;pointer-events:none}
+#card{position:absolute;right:12px;top:12px;width:min(360px,calc(100% - 24px));max-height:calc(100% - 24px);overflow:auto;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--hot);border-radius:6px;box-shadow:var(--shadow);padding:14px 16px}
+#card[hidden]{display:none}
+#card h3{margin:0 0 2px;font-size:16px}
+#card .ref{color:var(--muted);font-size:12.5px;margin-bottom:8px}
+#card p{margin:8px 0}
+#card .flag{border-left:3px solid var(--hot);background:var(--panel2);padding:7px 10px;font-size:12.5px;margin:10px 0}
+#card .nav{display:flex;gap:6px;margin-top:10px}
+#card .nav .btn{flex:1}
+#toast{position:absolute;left:50%;top:14px;transform:translateX(-50%);background:var(--brand);color:#fff;padding:8px 14px;border-radius:6px;font-size:13px;box-shadow:var(--shadow);pointer-events:none;opacity:0;transition:opacity .2s}
+#toast.on{opacity:1}
+#fallback{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:24px}
+#mlist{list-style:none;padding:0;margin:6px 0}
+#mlist li{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:4px 0}
+.pin.s{border-color:#2f6fb5}
+.pin.s[aria-current="true"]{background:#2f6fb5;box-shadow:0 0 0 5px rgba(47,111,181,.35)}
+.flist .no.s{border-color:#2f6fb5}
+@media (max-width:820px){
+  #app{grid-template-columns:1fr;grid-template-rows:auto 1fr auto}
+  #stage{grid-row:2;grid-column:1}
+  #side{grid-row:3;grid-column:1;max-height:46%;border-right:0;border-top:1px solid var(--line)}
+  #side.collapsed{display:none}
+  .onlyMobile{display:inline-block}
+  header p{display:none}
+  header h1{font-size:15px}
+  #card{top:auto;bottom:12px;max-height:55%}
+  #hud{display:none}
+}
+@media (prefers-reduced-motion: reduce){ #toast{transition:none} }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div>
+      <h1>Gasholder No. 172, Great Yarmouth</h1>
+      <p>Guide frame from the CRADDYS GA drawings (P01) with the BDS access scaffold (Rev D)</p>
+    </div>
+    <div class="hbtns">
+      <button class="hbtn onlyMobile" id="btnPanel" aria-expanded="true">Controls</button>
+      <button class="hbtn" id="btnVR" hidden>Enter VR</button>
+      <button class="hbtn" id="btnTheme">Light or dark</button>
+    </div>
+  </header>
+
+  <aside id="side">
+    <div class="tabs" role="tablist" aria-label="Model controls">
+      <button role="tab" aria-selected="true" data-tab="view">View</button>
+      <button role="tab" aria-selected="false" data-tab="layers">Layers</button>
+      <button role="tab" aria-selected="false" data-tab="cond">Condition</button>
+      <button role="tab" aria-selected="false" data-tab="scaf">Scaffold</button>
+      <button role="tab" aria-selected="false" data-tab="data">Data</button>
+    </div>
+
+    <section class="tabpanel" id="tab-view">
+      <h2>Camera</h2>
+      <div class="grid5">
+        <button class="btn" data-cam="overview">Overview</button>
+        <button class="btn" data-cam="plan">Plan (BDS)</button>
+        <button class="btn" data-cam="plannorth">Plan, north up</button>
+        <button class="btn" data-cam="elev">Elevation</button>
+        <button class="btn" data-cam="crown">Crown</button>
+        <button class="btn" data-cam="base">Base</button>
+        <button class="btn" data-cam="ground">Ground eye</button>
+        <button class="btn" data-cam="scaffold">Scaffold</button>
+      </div>
+
+      <h2>Section and assembly</h2>
+      <div class="field"><div class="lbl"><label for="rCut">Cut at height</label><output id="oCut">Off</output></div>
+        <input type="range" id="rCut" min="0" max="30" step="0.1" value="30"></div>
+      <div class="field"><div class="lbl"><label for="rExplode">Separate tiers</label><output id="oExplode">0%</output></div>
+        <input type="range" id="rExplode" min="0" max="100" step="1" value="0"></div>
+      <div class="field"><div class="lbl"><label for="rSun">Sun direction</label><output id="oSun">40°</output></div>
+        <input type="range" id="rSun" min="0" max="360" step="1" value="40"></div>
+
+      <h2>Display</h2>
+      <label class="check"><input type="checkbox" id="cRotate"><span>Slow auto-rotate</span></label>
+      <label class="check"><input type="checkbox" id="cLabels" checked><span>Column numbers</span></label>
+      <label class="check"><input type="checkbox" id="cDims" checked><span>Dimensions<small>Tier heights and radius from drawing 0110</small></span></label>
+      <label class="check"><input type="checkbox" id="cPerson" checked><span>Person for scale (1.8 m)</span></label>
+
+      <h2>Measure</h2>
+      <div class="grid5" style="grid-template-columns:1fr 1fr">
+        <button class="btn" id="btnMeasure" aria-pressed="false">Measure distance</button>
+        <button class="btn" id="btnClearM">Clear</button>
+      </div>
+      <ul id="mlist"></ul>
+      <p class="note">Click two points on the steel. Distances come from the model, not the drawings, so use them for planning only. Reset tier separation to 0% first.</p>
+    </section>
+
+    <section class="tabpanel" id="tab-layers" hidden>
+      <h2>Structure</h2>
+      <label class="check"><input type="checkbox" data-layer="columns" checked><span>Cast iron columns, bolt boxes and bases</span></label>
+      <label class="check"><input type="checkbox" data-layer="beams1" checked><span>Low level lattice beams</span></label>
+      <label class="check"><input type="checkbox" data-layer="beams2" checked><span>Mid level lattice beams</span></label>
+      <label class="check"><input type="checkbox" data-layer="beams3" checked><span>High level lattice beams</span></label>
+      <label class="check"><input type="checkbox" data-layer="rails" checked><span>Guide rails, brackets and cantilever arms</span></label>
+      <label class="check"><input type="checkbox" data-layer="bracing" checked><span>High level plan bracing<small>14 runs of 200x95 channel, each spliced at two crossings</small></span></label>
+      <label class="check"><input type="checkbox" data-layer="finials" checked><span>Column finials and capping plates</span></label>
+
+      <h2>Works and site</h2>
+      <label class="check"><input type="checkbox" data-layer="access" checked><span>Redundant vertical access<small>Stair, ladders and landings the drawings show for permanent removal. Bay position is indicative.</small></span></label>
+      <label class="check"><input type="checkbox" data-layer="site" checked><span>Site context<small>Roads, compound, demolished holder, lorry yard and houses traced by eye from the aerial, so approximate. North is the +X direction.</small></span></label>
+      <label class="check"><input type="checkbox" data-layer="zone"><span>Dropped object zone<small>Illustrative ring. Set the real distance from your risk assessment.</small></span></label>
+      <div class="field"><div class="lbl"><label for="rZone">Zone width beyond column faces</label><output id="oZone">5 m</output></div>
+        <input type="range" id="rZone" min="1" max="30" step="0.5" value="5"></div>
+      <div class="warn">The designer’s CDM note on all five drawings flags falling objects from height, such as tools and bolt fixings, with access below the work area restricted by fencing and signage. Drawings 0101, 0105 and 0110 also call for protection of the public on adjacent pavements and roads by fan or gantry scaffold.</div>
+    </section>
+
+    <section class="tabpanel" id="tab-cond" hidden>
+      <h2>Condition overlay</h2>
+      <label class="check"><input type="checkbox" id="cCond"><span>Colour steel by recorded condition<small>Indicative reading of the wording on drawing 0215. It is not a graded severity scale from the report.</small></span></label>
+      <label class="check"><input type="checkbox" id="cPins" checked><span>Show finding markers</span></label>
+      <ul class="legend">
+        <li><span class="sw" style="background:#C62828"></span><span>Severe: major section loss, perforation or failed fixings noted</span></li>
+        <li><span class="sw" style="background:#DC5F20"></span><span>Advanced: accelerated corrosion, ponding, lamination or section loss</span></li>
+        <li><span class="sw" style="background:#E0B400"></span><span>Corroded fixings, packers, members or water traps</span></li>
+        <li><span class="sw" style="background:#7E57C2"></span><span>Damage or modification recorded</span></li>
+        <li><span class="sw" style="background:#8a8f98"></span><span>Coating recorded as failed throughout, no other defect noted on the GA</span></li>
+      </ul>
+      <h2>Findings from drawing 0215</h2>
+      <ul class="flist" id="flist"></ul>
+      <p class="note">0215 is an overview, not an exhaustive defect list. Clause numbers refer to the Condition Inspection Report, which was not in the supplied appendix.</p>
+    </section>
+
+        <section class="tabpanel" id="tab-scaf" hidden>
+      <h2>Access scaffold</h2>
+      <p class="note">Rebuilt from BDS drawing TAZ001-11391-1 Rev D, construction issue 09/06/2026. The drawing is not to scale, so positions, radii and lift levels are indicative.</p>
+      <label class="check"><input type="checkbox" id="sOn" checked><span>Show access scaffold<small>Hidden while tiers are separated</small></span></label>
+      <div class="field"><div class="lbl"><label for="rStage">Erection stage</label><output id="oStage">Complete with roof</output></div>
+        <input type="range" id="rStage" min="0" max="17" step="1" value="17"></div>
+
+      <h2>Parts</h2>
+      <label class="check"><input type="checkbox" data-sl="ring" checked><span>External splayed access scaffold<small>Two 1.09 m bands, inside and outside the column ring</small></span></label>
+      <label class="check"><input type="checkbox" data-sl="cage" checked><span>Internal birdcage<small>2.57 m grid, X braced to the 8th lift on the perimeter</small></span></label>
+      <label class="check"><input type="checkbox" data-sl="roof" checked><span>Roof trusses<small>Eaves 29 m, ridge and gable ends 32 m</small></span></label>
+      <label class="check"><input type="checkbox" data-sl="wrap" checked><span>Encapsulation sheeting</span></label>
+      <label class="check"><input type="checkbox" data-sl="decks"><span>Decks<small>Boarded lifts are not stated, so every lift is shown when this is ticked</small></span></label>
+      <label class="check"><input type="checkbox" data-sl="stairs" checked><span>Stair towers</span></label>
+      <label class="check"><input type="checkbox" data-sl="hoist" checked><span>Hoist masts</span></label>
+      <label class="check"><input type="checkbox" data-sl="fans" checked><span>Catch fans at 8 m</span></label>
+      <label class="check"><input type="checkbox" data-sl="prot" checked><span>Asset and building protection</span></label>
+
+      <h2>Colours and markers</h2>
+      <label class="check"><input type="checkbox" id="sZone"><span>Colour by BDS zone</span></label>
+      <label class="check"><input type="checkbox" id="sPlan"><span>BDS plan zones on the ground</span></label>
+      <label class="check"><input type="checkbox" id="sNotes" checked><span>Show scaffold note markers</span></label>
+      <ul class="legend">
+        <li><span class="sw" style="background:#3FAE49"></span><span>Splayed access scaffold</span></li>
+        <li><span class="sw" style="background:#E5645F"></span><span>Internal birdcage</span></li>
+        <li><span class="sw" style="background:#6EE7E7"></span><span>Internal workshop (footprint only)</span></li>
+        <li><span class="sw" style="background:#D61EC2"></span><span>Catch fan</span></li>
+        <li><span class="sw" style="background:#F2961C"></span><span>AT-PAC asset protection</span></li>
+        <li><span class="sw" style="background:#B88ACB"></span><span>Beamed tube and fitting protection</span></li>
+        <li><span class="sw" style="background:#8A7A2E"></span><span>Hoist</span></li>
+      </ul>
+
+      <h2>Model figures</h2>
+      <table>
+        <tr><th>Item</th><th class="n">Value</th></tr>
+        <tr><td>Height to eaves (section C-C)</td><td class="n">29 m</td></tr>
+        <tr><td>Height to ridge and gable ends (section D-D)</td><td class="n">32 m</td></tr>
+        <tr><td>Maximum bay length and width, access scaffold</td><td class="n">2.57 m</td></tr>
+        <tr><td>Maximum lift height, access scaffold</td><td class="n">2.5 m</td></tr>
+        <tr><td>Gross volume inside the sheeting (model)</td><td class="n" id="oVol"></td></tr>
+      </table>
+      <p class="note">The volume is gross: it is not reduced for gasholder steel or internal scaffold. [VERIFY] against the encapsulation design before using it in any calculation. Lift levels were rebuilt from dimension strings on sections C-C and D-D and also need checking against the issued drawing.</p>
+
+      <h2>Drawing notes and planning flags</h2>
+      <ul class="flist" id="slist"></ul>
+      <p class="note">Notes paraphrase the BDS drawings. Planning flags are mine, not BDS, and need confirming with the designer.</p>
+    </section>
+
+    <section class="tabpanel" id="tab-data" hidden>
+      <h2>Key dimensions</h2>
+      <table>
+        <tr><th>Item</th><th class="n">Value</th></tr>
+        <tr><td>Overall height</td><td class="n">28.865 m</td></tr>
+        <tr><td>Tier 1</td><td class="n">8.875 m</td></tr>
+        <tr><td>Tier 2</td><td class="n">8.750 m</td></tr>
+        <tr><td>Tier 3, excluding finial</td><td class="n">9.005 m</td></tr>
+        <tr><td>Tier 3 complete, with finial</td><td class="n">11.240 m</td></tr>
+        <tr><td>Finial and capping plate</td><td class="n">2.235 m</td></tr>
+        <tr><td>Radius to column centres</td><td class="n">15.840 m</td></tr>
+        <tr><td>Columns and bays</td><td class="n">14 and 14</td></tr>
+        <tr><td>Lattice beams (3 levels)</td><td class="n">42</td></tr>
+        <tr><td>Low and mid beam, width</td><td class="n">0.465 m</td></tr>
+        <tr><td>High beam, width</td><td class="n">0.375 m</td></tr>
+      </table>
+      <h2>Fixings stated on the drawings</h2>
+      <table>
+        <tr><th>Item</th><th class="n">Count</th></tr>
+        <tr><td>Bolts per low or mid beam (2 angles each end, 7 per angle)</td><td class="n">28</td></tr>
+        <tr><td>Bolts per high beam (2 angles each end, 10 per angle)</td><td class="n">40</td></tr>
+        <tr><td>Beam to column bolts, all 42 beams (derived)</td><td class="n">1,344</td></tr>
+        <tr><td>Column joint bolts, per joint (range on drawing 0110)</td><td class="n">14 to 22</td></tr>
+        <tr><td>Finial capping plate bolts, per column</td><td class="n">8 (M20)</td></tr>
+        <tr><td>Holding down bolts per baseplate (76 dia.)</td><td class="n">5</td></tr>
+      </table>
+      <p class="note">Bolt sizes are anticipated from painted bolts during inspection, mostly M36, with M33 for guide rail brackets and M22 for guide rail fixings, all marked TBC. Replacement bolts are to be galvanised grade 8.8 and sized by measuring removed, uncorroded examples.</p>
+
+      <h2>Drawing register</h2>
+      <table>
+        <tr><th>Drawing</th><th>Title</th><th>Date</th></tr>
+        <tr><td>12577-CDY-XX-01-D-S-0101 P01</td><td>Ground level column plan</td><td>11/06/2025</td></tr>
+        <tr><td>12577-CDY-XX-03-D-S-0105 P01</td><td>Plan on high level plan bracing</td><td>11/06/2025</td></tr>
+        <tr><td>12577-CDY-XX-ZZ-D-S-0107 P01</td><td>Northwest elevation</td><td>11/06/2025</td></tr>
+        <tr><td>12577-CDY-XX-ZZ-D-S-0110 P01</td><td>Typical bay elevation and radial section</td><td>11/06/2025</td></tr>
+        <tr><td>12577-CDY-XX-ZZ-D-S-0215 P01</td><td>Condition inspection findings GA</td><td>28/03/2025</td></tr>
+        <tr><td>TAZ001-11391-1 Rev D, sheets 1 to 12 (BDS)</td><td>AT-PAC access scaffold, construction issue</td><td>09/06/2026</td></tr>
+      </table>
+      <p class="note">Status S2, for information. Issued with Refurbishment Technical Requirements Report 12577w0013, Appendix A, May 2025.</p>
+
+      <h2>Model basis and limits</h2>
+      <ul class="plain">
+        <li>The drawings say not to scale from them and to work only from figured dimensions. This model follows the same rule: briefing and planning use only.</li>
+        <li>Beam depths of 1.525 m (low and mid) and 1.890 m (high) were read from dimension strings on drawing 0110. [VERIFY] against the issued drawing.</li>
+        <li>Column 1 position and numbering direction are arbitrary. North is modelled as the +X direction, set from the aerial.</li>
+        <li>The site context is traced by eye from a Google aerial. It is approximate and not taken from the 1:500 site plan or a survey. The sub-station shown on the BDS plan is not drawn because its position could not be reconciled with the aerial.</li>
+        <li>Bolt box joints are shown as a generic ring. Per-joint bolt counts on drawing 0110 are not mapped to tiers.</li>
+        <li>The scaffold is rebuilt from the BDS general arrangement, which is not to scale. The aerial shows Admiralty Road north and Barrack Road west of the holder, and the BDS plan has Admiralty Road on its right. That makes plan up point west, although the BDS sheets show a north arrow pointing up. [VERIFY] with BDS, because fan and asset positions are described by side. The CRADDYS drawings carry no north, so column numbering against north is not established.</li>
+        <li>Scaffold radii, band widths, lift levels, fan widths, stair tower and protection positions are read from plans and dimension strings. The model shows the plan bracing and cantilever arms overlapping the inner scaffold band at crown level, which needs checking with BDS.</li>
+        <li>RAMS, temporary works and access design must use the issued drawings and the Condition Inspection Report.</li>
+      </ul>
+    </section>
+  </aside>
+
+  <main id="stage" aria-label="3D model viewport">
+    <div id="pins"></div>
+    <div id="hud">Drag to orbit. Scroll or pinch to zoom. Right drag or two fingers to pan. Model is indicative: do not scale.</div>
+    <div id="card" hidden></div>
+    <div id="toast" role="status"></div>
+    <div id="fallback"><p>This page needs WebGL to draw the model. Try another browser or enable hardware acceleration.</p></div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+(function(){
+'use strict';
+var $=function(s){return document.querySelector(s)};
+var stage=$('#stage');
+
+/* ---------------- Constants from the GA drawings (metres) ---------------- */
+var N=14, R=15.84, TWO=Math.PI*2;
+var TIER_TOP=[8.875,17.625,26.63], TOTAL=28.865;
+var BEAM_Y=[8.025,16.775,25.74];
+var PLAN_Y=26.9, TIP_R=R-1.2;
+var DAMAGED_FINIALS={1:1,6:1,10:1,11:1,12:1,13:1,14:1};
+var MOD_BAY=12;
+function theta(k){return (k-1)*TWO/N}
+
+/* ---------------- Renderer ---------------- */
+var renderer;
+try{
+  renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'high-performance'});
+}catch(e){ $('#fallback').style.display='grid'; return; }
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+renderer.outputEncoding=THREE.sRGBEncoding;
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+stage.insertBefore(renderer.domElement,stage.firstChild);
+
+var scene=new THREE.Scene();
+var camera=new THREE.PerspectiveCamera(40,1,0.5,900);
+camera.position.set(-72,42,76);
+var controls=new THREE.OrbitControls(camera,renderer.domElement);
+controls.target.set(0,13,0);
+controls.enableDamping=true; controls.dampingFactor=0.08;
+controls.minDistance=4; controls.maxDistance=230;
+controls.maxPolarAngle=Math.PI/2-0.01;
+controls.autoRotateSpeed=0.5;
+
+var clipPlane=new THREE.Plane(new THREE.Vector3(0,-1,0),200);
+renderer.clippingPlanes=[clipPlane];
+
+function col(h){return new THREE.Color(h).convertSRGBToLinear()}
+
+/* ---------------- Lights ---------------- */
+var hemi=new THREE.HemisphereLight(col('#dfe8f5'),col('#8a8f98'),0.9);
+scene.add(hemi);
+var sun=new THREE.DirectionalLight(0xffffff,1.35);
+sun.castShadow=true;
+sun.shadow.mapSize.set(2048,2048);
+var sc=sun.shadow.camera; sc.left=-34; sc.right=34; sc.top=34; sc.bottom=-34; sc.near=5; sc.far=170;
+sun.shadow.bias=-0.0004; sun.shadow.normalBias=0.03;
+scene.add(sun); scene.add(sun.target);
+var fill=new THREE.DirectionalLight(col('#9db8e6'),0.35);
+fill.position.set(-40,20,-30); scene.add(fill);
+function setSun(az){
+  var a=az*Math.PI/180;
+  sun.position.set(Math.cos(a)*70,58,Math.sin(a)*70);
+}
+setSun(40);
+
+/* ---------------- Geometry helpers ---------------- */
+function place(g,x,y,z,rx,ry,rz){
+  if(rx||ry||rz){ g.applyMatrix4(new THREE.Matrix4().makeRotationFromEuler(new THREE.Euler(rx||0,ry||0,rz||0))); }
+  g.translate(x||0,y||0,z||0); return g;
+}
+function bx(w,h,d,x,y,z,rx,ry,rz){return place(new THREE.BoxGeometry(w,h,d),x,y,z,rx,ry,rz)}
+function cyl(rt,rb,h,seg,x,y,z,rx,ry,rz){return place(new THREE.CylinderGeometry(rt,rb,h,seg),x,y,z,rx,ry,rz)}
+function merge(list){
+  var arr=list.map(function(g){return g.index?g.toNonIndexed():g});
+  var n=0; arr.forEach(function(g){n+=g.attributes.position.count});
+  var pos=new Float32Array(n*3), nor=new Float32Array(n*3), uv=new Float32Array(n*2), o=0;
+  arr.forEach(function(g){
+    pos.set(g.attributes.position.array,o*3); nor.set(g.attributes.normal.array,o*3); uv.set(g.attributes.uv.array,o*2);
+    o+=g.attributes.position.count;
+  });
+  var out=new THREE.BufferGeometry();
+  out.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  out.setAttribute('normal',new THREE.BufferAttribute(nor,3));
+  out.setAttribute('uv',new THREE.BufferAttribute(uv,2));
+  out.computeBoundingSphere(); out.computeBoundingBox();
+  return out;
+}
+
+/* ---------------- Materials ---------------- */
+function noiseTex(){
+  var c=document.createElement('canvas'); c.width=c.height=256;
+  var g=c.getContext('2d'); g.fillStyle='#e8e8e8'; g.fillRect(0,0,256,256);
+  for(var i=0;i<1600;i++){
+    var v=(150+Math.random()*105)|0;
+    g.fillStyle='rgba('+v+','+v+','+v+',0.28)';
+    g.beginPath(); g.arc(Math.random()*256,Math.random()*256,Math.random()*13+2,0,7); g.fill();
+  }
+  var t=new THREE.CanvasTexture(c); t.wrapS=t.wrapT=THREE.RepeatWrapping; t.encoding=THREE.sRGBEncoding; return t;
+}
+var NOISE=noiseTex();
+var PAL={col:'#7a7068',base:'#625b54',beam:'#8a6b57',beammod:'#8a6b57',bolt:'#a9743f',packer:'#946141',endp:'#85503c',rail:'#737c87',brk:'#665f58',cant:'#98593a',pbrace:'#838b94',spl:'#b9824f',fin:'#72695f',findmg:'#72695f'};
+var COND={col:'#8a8f98',base:'#E0B400',beam:'#E0B400',beammod:'#7E57C2',bolt:'#E0B400',packer:'#E0B400',endp:'#C62828',rail:'#DC5F20',brk:'#DC5F20',cant:'#C62828',pbrace:'#DC5F20',spl:'#8a8f98',fin:'#8a8f98',findmg:'#7E57C2'};
+var MAT={};
+Object.keys(PAL).forEach(function(k){
+  MAT[k]={
+    base:new THREE.MeshStandardMaterial({color:col(PAL[k]),map:NOISE,roughness:0.82,metalness:0.12}),
+    cond:new THREE.MeshStandardMaterial({color:col(COND[k]),map:NOISE,roughness:0.6,metalness:0.05})
+  };
+});
+var ACCESS_MAT=new THREE.MeshStandardMaterial({color:col('#3b82f6'),transparent:true,opacity:0.72,roughness:0.5,metalness:0.1,depthWrite:false});
+
+/* ---------------- Scene graph ---------------- */
+var root=new THREE.Group(); scene.add(root);
+var tiers=[null,new THREE.Group(),new THREE.Group(),new THREE.Group()];
+for(var ti=1;ti<=3;ti++) root.add(tiers[ti]);
+var allMeshes=[], layerMeshes={columns:[],beams1:[],beams2:[],beams3:[],rails:[],bracing:[],finials:[],access:[]};
+var special={};
+
+function addMesh(geom,cat,layer,parent,matrices){
+  var mesh;
+  if(matrices){
+    mesh=new THREE.InstancedMesh(geom,MAT[cat].base,matrices.length);
+    matrices.forEach(function(m,i){mesh.setMatrixAt(i,m)});
+    mesh.instanceMatrix.needsUpdate=true; mesh.frustumCulled=false;
+  } else { mesh=new THREE.Mesh(geom,MAT[cat].base); }
+  mesh.castShadow=true; mesh.receiveShadow=true;
+  mesh.userData.cat=cat; mesh.userData.layer=layer;
+  parent.add(mesh); allMeshes.push(mesh); layerMeshes[layer].push(mesh);
+  return mesh;
+}
+function colMatrix(k){
+  var t=theta(k), m=new THREE.Matrix4().makeRotationY(Math.PI/2-t);
+  m.setPosition(R*Math.cos(t),0,R*Math.sin(t)); return m;
+}
+function bayMatrix(b,y){
+  var tm=theta(b)+Math.PI/N, r=R*Math.cos(Math.PI/N), m=new THREE.Matrix4().makeRotationY(Math.PI/2-tm);
+  m.setPosition(r*Math.cos(tm),y,r*Math.sin(tm)); return m;
+}
+var ALLCOLS=[]; for(var ck=1;ck<=N;ck++) ALLCOLS.push(colMatrix(ck));
+
+/* ---- Columns, one local geometry set per tier (local z = radially outward) ---- */
+function buildTier(t){
+  var top=TIER_TOP[t-1], bot=(t===1)?0:TIER_TOP[t-2], yb=top-1.7, groups={};
+  function add(layer,cat,g){var key=layer+'|'+cat; (groups[key]=groups[key]||{layer:layer,cat:cat,list:[]}).list.push(g)}
+  var sBot=(t===1)?2.135:bot+0.07;
+  add('columns','col',cyl(0.41,0.41,yb-sBot,16,0,(yb+sBot)/2,0));
+  add('columns','col',cyl(0.5,0.5,1.7,8,0,yb+0.85,0,0,Math.PI/8,0));
+  for(var j=0;j<8;j++){
+    var ph=j*Math.PI/4; if(Math.abs(Math.sin(ph))>0.9) continue;
+    var rr=0.5*Math.cos(Math.PI/8)+0.012;
+    add('columns','col',bx(0.46,1.3,0.03,rr*Math.sin(ph),yb+0.85,rr*Math.cos(ph),0,ph,0));
+  }
+  add('columns','col',cyl(0.54,0.54,0.14,18,0,top-0.07,0));
+  for(var i=0;i<18;i++){
+    var a=i*TWO/18;
+    add('columns','col',bx(0.025,0.26,0.07,0.52*Math.sin(a),top-0.27,0.52*Math.cos(a),0,a,0));
+    add('columns','bolt',cyl(0.03,0.03,0.03,6,0.47*Math.sin(a),top+0.015,0.47*Math.cos(a)));
+  }
+  if(t===1){
+    add('columns','base',cyl(0.85,0.85,0.15,8,0,0.075,0,0,Math.PI/8,0));
+    [-40,0,40].forEach(function(d){var p=d*Math.PI/180; add('columns','base',bx(0.05,0.22,0.5,0.62*Math.sin(p),0.26,0.62*Math.cos(p),0,p,0))});
+    add('columns','col',cyl(0.58,0.58,1.985,8,0,1.1425,0,0,Math.PI/8,0));
+    [[-35,0.72],[0,0.72],[35,0.72],[155,0.6],[205,0.6]].forEach(function(q){
+      var p=q[0]*Math.PI/180;
+      add('columns','bolt',cyl(0.038,0.038,0.2,6,q[1]*Math.sin(p),0.25,q[1]*Math.cos(p)));
+      add('columns','bolt',cyl(0.06,0.06,0.05,6,q[1]*Math.sin(p),0.19,q[1]*Math.cos(p)));
+    });
+  }
+  var rTop=(t===1)?8.875:(t===2)?17.625:26.95, rBot=(t===1)?0.4:bot;
+  var rh=rTop-rBot, rc=(rTop+rBot)/2;
+  add('rails','rail',bx(0.2,rh,0.01,0,rc,-0.67));
+  add('rails','rail',bx(0.012,rh,0.09,0.094,rc,-0.625));
+  add('rails','rail',bx(0.012,rh,0.09,-0.094,rc,-0.625));
+  add('rails','brk',bx(0.36,0.5,0.2,0,top-0.85,-0.58));
+  add('rails','brk',bx(0.3,0.4,0.26,0,(sBot+yb)/2,-0.55));
+  if(t===3){
+    [-0.17,0.17].forEach(function(x){
+      add('rails','cant',bx(0.2,0.012,0.55,x,26.7,-0.945));
+      add('rails','cant',bx(0.012,0.09,0.55,x-0.1,26.745,-0.945));
+      add('rails','cant',bx(0.012,0.09,0.55,x+0.1,26.745,-0.945));
+    });
+  }
+  Object.keys(groups).forEach(function(k){var e=groups[k]; addMesh(merge(e.list),e.cat,e.layer,tiers[t],ALLCOLS)});
+}
+buildTier(1); buildTier(2); buildTier(3);
+
+/* ---- Finials (damaged capping plates tilted) ---- */
+function finialGeom(damaged){
+  var list=[];
+  var plate=bx(0.57,0.03,0.57,0,26.645,0);
+  var prof=[[0,0],[0.46,0],[0.46,0.12],[0.34,0.25],[0.40,0.45],[0.30,0.7],[0.24,1.0],[0.30,1.25],[0.20,1.6],[0.12,1.9],[0.16,2.0],[0.08,2.1],[0,2.205]]
+    .map(function(p){return new THREE.Vector2(p[0],p[1]+26.66)});
+  var lathe=new THREE.LatheGeometry(prof,16);
+  list.push(plate,lathe);
+  var bolts=[];
+  for(var i=0;i<8;i++){var a=i*TWO/8; bolts.push(cyl(0.015,0.015,0.02,6,0.23*Math.sin(a),26.67,0.23*Math.cos(a)))}
+  var body=merge(list), bl=merge(bolts);
+  if(damaged){
+    [body,bl].forEach(function(g){g.translate(0,-26.63,0); g.applyMatrix4(new THREE.Matrix4().makeRotationX(0.1)); g.translate(0,26.63,0.0)});
+  }
+  return {body:body,bolts:bl};
+}
+(function(){
+  var ok=[],bad=[];
+  for(var k=1;k<=N;k++){ (DAMAGED_FINIALS[k]?bad:ok).push(ALLCOLS[k-1]) }
+  var a=finialGeom(false), b=finialGeom(true);
+  addMesh(a.body,'fin','finials',tiers[3],ok); addMesh(a.bolts,'bolt','finials',tiers[3],ok);
+  addMesh(b.body,'findmg','finials',tiers[3],bad); addMesh(b.bolts,'bolt','finials',tiers[3],bad);
+})();
+
+/* ---- Lattice beams ---- */
+function buildBeam(level,mod){
+  var high=(level===3), H=high?1.89:1.525, W=high?0.375:0.465, L=6.12, t=0.0127;
+  var mem=[],bolt=[],pack=[],endp=[];
+  [-1,1].forEach(function(s){[-1,1].forEach(function(v){
+    if(mod&&v===1) return;
+    mem.push(bx(L,0.09,0.09,0,v*(H/2-0.045),s*(W/2-0.045)));
+  })});
+  var hh=H-0.2, n=8, x0=-(L/2-0.4), p=(L-0.8)/n, fz=W/2-0.0064;
+  [-1,1].forEach(function(s){
+    for(var i=0;i<=n;i++) mem.push(bx(0.102,hh,t,x0+i*p,0,s*fz));
+    for(i=0;i<n;i++){
+      var cx=x0+(i+0.5)*p, len=Math.hypot(p,hh), a=Math.atan2(hh,p);
+      mem.push(bx(len,0.076,t,cx,0,s*(fz+t),0,0,a));
+      mem.push(bx(len,0.076,t,cx,0,s*(fz+2*t),0,0,-a));
+    }
+  });
+  [-1,1].forEach(function(v){
+    if(mod&&v===1) return;
+    for(var i=0;i<n;i++){
+      var cx=x0+(i+0.5)*p, len=Math.hypot(p,W-0.1), a=Math.atan2(W-0.1,p)*(i%2?1:-1);
+      mem.push(bx(len,t,0.076,cx,v*(H/2-0.09),0,0,a,0));
+    }
+  });
+  [-1,1].forEach(function(s){mem.push(cyl(0.0127,0.0127,L,6,0,0,s*0.06,0,0,Math.PI/2))});
+  var nB=high?10:7;
+  [-1,1].forEach(function(e){[-1,1].forEach(function(s){
+    mem.push(bx(0.62,H-0.05,0.012,e*(L/2-0.31),0,s*(W/2+0.006)));
+    mem.push(bx(0.127,H-0.1,0.02,e*(L/2-0.0635),0,s*(W/2+0.022)));
+    for(var r=0;r<8;r++)for(var c=0;c<4;c++){
+      if(r===7&&c===3) continue;
+      mem.push(cyl(0.011,0.011,0.012,6,e*(L/2-0.34+(c-1.5)*0.12),(r-3.5)*(H-0.3)/7,s*(W/2+0.017),Math.PI/2,0,0));
+    }
+    for(var q=0;q<nB;q++){
+      bolt.push(cyl(0.032,0.032,0.035,6,e*(L/2-0.0635),(q-(nB-1)/2)*((H-0.3)/(nB-1)),s*(W/2+0.0495),Math.PI/2,0,0));
+    }
+    [-1,0,1].forEach(function(qq){pack.push(bx(0.16,0.1,0.01,e*(L/2-0.0635),qq*(H/2-0.3)*0.9,s*(W/2+0.0125)))});
+  })});
+  if(high){[-1,1].forEach(function(e){endp.push(bx(0.42,0.02,W+0.12,e*(L/2-0.22),H/2+0.01,0))})}
+  return {mem:merge(mem),bolt:merge(bolt),pack:merge(pack),endp:endp.length?merge(endp):null};
+}
+[1,2,3].forEach(function(lv){
+  var std=[],layer='beams'+lv;
+  for(var b=1;b<=N;b++){ if(lv===1&&b===MOD_BAY) continue; std.push(bayMatrix(b,BEAM_Y[lv-1])) }
+  var g=buildBeam(lv,false);
+  addMesh(g.mem,'beam',layer,tiers[lv],std);
+  addMesh(g.bolt,'bolt',layer,tiers[lv],std);
+  addMesh(g.pack,'packer',layer,tiers[lv],std);
+  if(g.endp) addMesh(g.endp,'endp',layer,tiers[lv],std);
+  if(lv===1){
+    var gm=buildBeam(1,true), one=[bayMatrix(MOD_BAY,BEAM_Y[0])];
+    addMesh(gm.mem,'beammod',layer,tiers[1],one);
+    addMesh(gm.bolt,'bolt',layer,tiers[1],one);
+    addMesh(gm.pack,'packer',layer,tiers[1],one);
+  }
+});
+
+/* ---- High level plan bracing, 14 runs of i to i+2, with splices at the two crossings ---- */
+function tip(k){var a=theta(k); return new THREE.Vector3(TIP_R*Math.cos(a),0,TIP_R*Math.sin(a))}
+function isect(a,b,c,d){
+  var den=(a.x-b.x)*(c.z-d.z)-(a.z-b.z)*(c.x-d.x);
+  var t=((a.x-c.x)*(c.z-d.z)-(a.z-c.z)*(c.x-d.x))/den;
+  return new THREE.Vector3(a.x+t*(b.x-a.x),0,a.z+t*(b.z-a.z));
+}
+(function(){
+  var chordLen=tip(1).distanceTo(tip(3))-0.2, list=[];
+  list.push(bx(chordLen,0.012,0.2,0,0,0));
+  list.push(bx(chordLen,0.095,0.012,0,0.0535,0.094));
+  list.push(bx(chordLen,0.095,0.012,0,0.0535,-0.094));
+  var g=merge(list), mats=[], spl=[];
+  var sg=merge([bx(0.9,0.025,0.27,0,-0.03,0)]);
+  for(var i=1;i<=N;i++){
+    var A=tip(i),B=tip(i+2), d=B.clone().sub(A), mid=A.clone().add(B).multiplyScalar(0.5);
+    var al=Math.atan2(-d.z,d.x);
+    var m=new THREE.Matrix4().makeRotationY(al); m.setPosition(mid.x,PLAN_Y,mid.z); mats.push(m);
+    [isect(A,B,tip(i+1),tip(i+3)),isect(A,B,tip(i-1),tip(i+1))].forEach(function(c){
+      var sm=new THREE.Matrix4().makeRotationY(al); sm.setPosition(c.x,PLAN_Y,c.z); spl.push(sm);
+    });
+  }
+  addMesh(g,'pbrace','bracing',tiers[3],mats);
+  addMesh(sg,'spl','bracing',tiers[3],spl);
+})();
+
+/* ---- Redundant vertical access (indicative, bay 12) ---- */
+(function(){
+  var zOut=0.95, zs=[0.2,8.2,16.9,25.8], bm=bayMatrix(MOD_BAY,0);
+  for(var t=1;t<=3;t++){
+    var list=[], y0=zs[t-1], y1=zs[t];
+    [-0.22,0.22].forEach(function(x){list.push(bx(0.04,y1-y0,0.04,x,(y0+y1)/2,zOut))});
+    for(var y=y0+0.3;y<y1;y+=0.3) list.push(bx(0.44,0.025,0.025,0,y,zOut));
+    var yl=y1;
+    list.push(bx(1.4,0.04,1.0,0,yl,zOut+0.2));
+    [[-0.7,-0.5],[0.7,-0.5],[-0.7,0.5],[0.7,0.5]].forEach(function(p){list.push(bx(0.04,1.0,0.04,p[0],yl+0.5,zOut+0.2+p[1]))});
+    list.push(bx(1.4,0.04,0.04,0,yl+1.0,zOut+0.7));
+    list.push(bx(0.04,0.04,1.0,-0.7,yl+1.0,zOut+0.2));
+    list.push(bx(0.04,0.04,1.0,0.7,yl+1.0,zOut+0.2));
+    var g=merge(list); g.applyMatrix4(bm);
+    var mesh=new THREE.Mesh(g,ACCESS_MAT); mesh.userData.layer='access'; mesh.castShadow=false;
+    tiers[t].add(mesh); layerMeshes.access.push(mesh);
+  }
+})();
+
+/* ---------------- Ground, shadows and site context ---------------- */
+function isDark(){
+  var t=document.documentElement.getAttribute('data-theme');
+  if(t) return t==='dark';
+  return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+function groundTex(dark){
+  var c=document.createElement('canvas'); c.width=c.height=512; var g=c.getContext('2d');
+  var rgb=dark?'52,80,124':'150,166,188';
+  var gr=g.createRadialGradient(256,256,10,256,256,256);
+  gr.addColorStop(0,'rgba('+rgb+',0.95)'); gr.addColorStop(0.6,'rgba('+rgb+',0.5)'); gr.addColorStop(1,'rgba('+rgb+',0)');
+  g.fillStyle=gr; g.fillRect(0,0,512,512);
+  g.strokeStyle=dark?'rgba(255,255,255,0.10)':'rgba(20,35,59,0.12)'; g.lineWidth=1;
+  for(var r=1;r<=13;r++){ g.beginPath(); g.arc(256,256,r*10*256/140,0,7); g.stroke(); }
+  var t=new THREE.CanvasTexture(c); t.encoding=THREE.sRGBEncoding; return t;
+}
+var ground=new THREE.Mesh(new THREE.CircleGeometry(140,96),new THREE.MeshBasicMaterial({map:groundTex(isDark()),transparent:true,depthWrite:false}));
+ground.rotation.x=-Math.PI/2; ground.position.y=-0.01; scene.add(ground);
+var shadowPlane=new THREE.Mesh(new THREE.PlaneGeometry(220,220),new THREE.ShadowMaterial({opacity:0.3}));
+shadowPlane.rotation.x=-Math.PI/2; shadowPlane.position.y=0.01; shadowPlane.receiveShadow=true; scene.add(shadowPlane);
+
+function roundRect(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()}
+function textSprite(txt,h,o){
+  o=o||{}; var fs=o.fs||44, pad=14, c=document.createElement('canvas'), g=c.getContext('2d');
+  g.font='bold '+fs+'px Arial, sans-serif';
+  var w=Math.ceil(g.measureText(txt).width)+pad*2; c.width=w; c.height=Math.round(fs*1.5);
+  g=c.getContext('2d'); g.font='bold '+fs+'px Arial, sans-serif'; g.textBaseline='middle'; g.textAlign='center';
+  roundRect(g,2,2,c.width-4,c.height-4,o.round||12); g.fillStyle=o.bg||'#ffffff'; g.fill();
+  g.lineWidth=3; g.strokeStyle=o.border||'#1C355D'; g.stroke();
+  g.fillStyle=o.fg||'#1C355D'; g.fillText(txt,c.width/2,c.height/2+2);
+  var tex=new THREE.CanvasTexture(c); tex.encoding=THREE.sRGBEncoding;
+  var sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,depthTest:false,transparent:true}));
+  sp.scale.set(h*c.width/c.height,h,1); sp.renderOrder=20; return sp;
+}
+function flatLabel(txt,wm,hm,fg){
+  var c=document.createElement('canvas'); c.width=1024; c.height=Math.round(1024*hm/wm); var g=c.getContext('2d');
+  g.font='bold '+Math.round(c.height*0.5)+'px Arial, sans-serif'; g.fillStyle=fg||'#e9eef6'; g.textAlign='center'; g.textBaseline='middle'; g.fillText(txt,c.width/2,c.height/2);
+  var t=new THREE.CanvasTexture(c); t.encoding=THREE.sRGBEncoding;
+  var m=new THREE.Mesh(new THREE.PlaneGeometry(wm,hm),new THREE.MeshBasicMaterial({map:t,transparent:true,depthWrite:false}));
+  m.rotation.x=-Math.PI/2; return m;
+}
+var site=new THREE.Group(); special.site=site; scene.add(site);
+var siteSolids=[];  /* solid footprints of the site context, used only to keep VR teleport out of buildings and lorries */
+function addSolid(m,w,h,d){m.updateMatrix(); siteSolids.push({inv:new THREE.Matrix4().copy(m.matrix).invert(),hx:w/2,hz:d/2,y0:m.position.y-h/2,y1:m.position.y+h/2})}
+(function(){
+  /* Traced by eye from the Google aerial supplied. North is +X, east is +Z. Approximate. */
+  function mat(h,r,o){return new THREE.MeshStandardMaterial(Object.assign({color:col(h),roughness:r||0.95},o||{}))}
+  var roadM=mat('#3a424d'), walkM=mat('#7d8794'), soilM=mat('#6b6558',1), yardM=mat('#59616c'), brickM=mat('#8d6a58'), roofM=mat('#5b6370'), greenM=mat('#5d7f62'), blueM=mat('#6b7f9a');
+  function plane(x,z,w,d,m,y){var p=new THREE.Mesh(new THREE.PlaneGeometry(w,d),m); p.rotation.x=-Math.PI/2; p.position.set(x,y||0.02,z); p.receiveShadow=true; site.add(p); return p}
+  function poly(pts,m,y){
+    var sh=new THREE.Shape(); pts.forEach(function(p,i){ if(i===0) sh.moveTo(p[0],-p[1]); else sh.lineTo(p[0],-p[1]) });
+    var g=new THREE.ShapeGeometry(sh); g.rotateX(-Math.PI/2); var mm=new THREE.Mesh(g,m); mm.position.y=y; mm.receiveShadow=true; site.add(mm); return mm;
+  }
+  function box(x,z,w,d,h,m){var b=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m); b.position.set(x,h/2,z); b.castShadow=true; b.receiveShadow=true; site.add(b); addSolid(b,w,h,d); return b}
+  function lab(t,x,y,z){var s=textSprite(t,1.5,{fs:40}); s.position.set(x,y,z); site.add(s)}
+
+  /* Roads and footways */
+  plane(23,20,10,260,roadM);
+  plane(17,20,2.2,260,walkM,0.025); plane(29,20,2.2,260,walkM,0.025);
+  plane(-30,-21,130,8,roadM);
+  plane(-30,-16,130,2.2,walkM,0.025); plane(-30,-26,130,2.2,walkM,0.025);
+  plane(-30,93,130,8,roadM);
+  plane(-105,40,10,260,roadM);
+  var l1=flatLabel('Admiralty Rd',34,4); l1.rotation.z=-Math.PI/2; l1.position.set(23,0.04,62); site.add(l1);
+  var l2=flatLabel('Barrack Rd',34,4); l2.position.set(-42,0.04,-21); site.add(l2);
+  var l3=flatLabel('Sutton Rd',30,4); l3.position.set(-45,0.04,93); site.add(l3);
+  var l4=flatLabel('S Denes Rd',30,4); l4.rotation.z=-Math.PI/2; l4.position.set(-105,0.04,70); site.add(l4);
+
+  /* Holder compound (soil) and the lorry yard to the south, split by the wall line */
+  plane(-57,36,80,106,yardM,0.012);
+  poly([[-33.6,-15.5],[-17.2,89],[17,89],[17,-15.5]],soilM,0.016);
+
+  /* Fence along Admiralty Rd and Barrack Rd, wall along the yard line */
+  var fc=document.createElement('canvas'); fc.width=256; fc.height=128; var g=fc.getContext('2d');
+  g.strokeStyle='#8fa0b8'; g.lineWidth=5; for(var x=6;x<256;x+=16){g.beginPath();g.moveTo(x,10);g.lineTo(x,128);g.stroke()}
+  g.lineWidth=7; g.beginPath(); g.moveTo(0,12); g.lineTo(256,12); g.stroke(); g.beginPath(); g.moveTo(0,120); g.lineTo(256,120); g.stroke();
+  var ft=new THREE.CanvasTexture(fc); ft.wrapS=ft.wrapT=THREE.RepeatWrapping; ft.encoding=THREE.sRGBEncoding;
+  function fence(x1,z1,x2,z2){
+    var len=Math.hypot(x2-x1,z2-z1), t=ft.clone(); t.needsUpdate=true; t.wrapS=THREE.RepeatWrapping; t.repeat.set(len/2.4,1);
+    var m=new THREE.Mesh(new THREE.PlaneGeometry(len,2.4),new THREE.MeshBasicMaterial({map:t,transparent:true,alphaTest:0.4,side:THREE.DoubleSide}));
+    m.position.set((x1+x2)/2,1.2,(z1+z2)/2); m.rotation.y=-Math.atan2(z2-z1,x2-x1); site.add(m);
+  }
+  fence(16,-15.5,16,89); fence(16,-15.5,-33.6,-15.5);
+  (function(){
+    var x1=-33.6,z1=-15.5,x2=-17.2,z2=89, len=Math.hypot(x2-x1,z2-z1);
+    var w=new THREE.Mesh(new THREE.BoxGeometry(len,2.4,0.3),mat('#8a7f76')); w.position.set((x1+x2)/2,1.2,(z1+z2)/2); w.rotation.y=-Math.atan2(z2-z1,x2-x1); w.castShadow=true; site.add(w); addSolid(w,len,2.4,0.3);
+  })();
+
+  /* Demolished holder: low remnant wall, floor and debris */
+  var dh=new THREE.Mesh(new THREE.CylinderGeometry(14.7,14.7,2.2,72,1,true),mat('#8a5a3a',0.9,{side:THREE.DoubleSide})); dh.position.set(-1,1.1,40.5); site.add(dh);
+  var df=new THREE.Mesh(new THREE.CircleGeometry(14.6,48),mat('#4a4038',1)); df.rotation.x=-Math.PI/2; df.position.set(-1,0.05,40.5); site.add(df);
+  var debrisM=mat('#7a4a2e');
+  for(var i=0;i<16;i++){
+    var a=i*2.399, r=1+((i*37)%100)/100*9, h=0.4+((i*53)%100)/100*1.4;
+    box(-1+r*Math.cos(a),40.5+r*Math.sin(a),1.2+(i%3)*0.6,1+(i%2)*0.8,h,debrisM);
+  }
+  lab('Demolished gasholder',-1,5,40.5);
+
+  /* Buildings read from the aerial */
+  box(-3.8,72.4,10,12,3.5,greenM); lab('Green roof building',-3.8,6,72.4);
+  box(-21,16,4,6,3,roofM); box(-24,25,5,5,3,roofM);
+  for(var z0=-60;z0<=130;z0+=24) box(38,z0,12,21,8.5,brickM);
+  box(2,-40,24,16,8,brickM); box(-34,-40,22,16,8,brickM); box(-60,-40,22,16,8,brickM);
+  box(4,110,36,28,12,roofM); box(-38,113,30,25,9,roofM); box(-70,113,26,25,8,brickM);
+  box(7.7,24.4,5,7,3.4,blueM); lab('Existing building (BDS plan)',7.7,6.4,24.4);
+
+  /* Lorries in the yard */
+  var lm=mat('#b9c0c9',0.7), spots=[], j;
+  for(j=0;j<12;j++) spots.push([-37-j*3.3,-6,2.6,14]);
+  for(j=0;j<10;j++) spots.push([-37-j*3.3,72,2.6,14]);
+  for(j=0;j<7;j++){ spots.push([-40-j*3.6,26,12,2.6]); spots.push([-40-j*3.6,36,12,2.6]) }
+  var lorries=new THREE.InstancedMesh(new THREE.BoxGeometry(1,1,1),lm,spots.length);
+  spots.forEach(function(s,k){
+    siteSolids.push({inv:new THREE.Matrix4().makeTranslation(-s[0],-1.7,-s[1]),hx:s[2]/2,hz:s[3]/2,y0:0.1,y1:3.3});
+    lorries.setMatrixAt(k,new THREE.Matrix4().compose(new THREE.Vector3(s[0],1.7,s[1]),new THREE.Quaternion(),new THREE.Vector3(s[2]>s[3]?s[2]:s[2],3.2,s[3])));
+  });
+  lorries.instanceMatrix.needsUpdate=true; lorries.frustumCulled=false; site.add(lorries);
+  lab('Lorry yard',-60,4,36);
+
+  /* North arrow */
+  var am=mat('#DC5F20',0.6);
+  var shaft=new THREE.Mesh(new THREE.BoxGeometry(8,0.12,0.5),am); shaft.position.set(8,0.2,62); site.add(shaft);
+  var head=new THREE.Mesh(new THREE.ConeGeometry(0.9,2.2,12),am); head.rotation.z=-Math.PI/2; head.position.set(13,0.25,62); site.add(head);
+  var ns=textSprite('N',1.5,{fs:54,bg:'#DC5F20',fg:'#ffffff',border:'#ffffff'}); ns.position.set(15.6,1.2,62); site.add(ns);
+  var s0=textSprite('Site context traced from the aerial, approximate',1.3,{fs:38,bg:'#DC5F20',fg:'#ffffff',border:'#DC5F20'}); s0.position.set(-6,2.5,84); site.add(s0);
+
+  /* Batch static site meshes that share a material into one draw each. Vertices are copied as they are. */
+  site.updateMatrixWorld(true);
+  var groups={};
+  site.children.slice().forEach(function(m){
+    if(!m.isMesh||m.isInstancedMesh||Array.isArray(m.material)||m.material.map||m.material.transparent) return;
+    if(!m.geometry.attributes.uv||!m.geometry.attributes.normal) return;
+    var key=m.material.uuid+'|'+m.castShadow+'|'+m.receiveShadow; (groups[key]=groups[key]||[]).push(m);
+  });
+  Object.keys(groups).forEach(function(k){
+    var list=groups[k]; if(list.length<2) return;
+    var merged=merge(list.map(function(m){var g=m.geometry.clone(); g.applyMatrix4(m.matrix); return g}));
+    var one=new THREE.Mesh(merged,list[0].material); one.castShadow=list[0].castShadow; one.receiveShadow=list[0].receiveShadow; site.add(one);
+    list.forEach(function(m){site.remove(m); m.geometry.dispose()});
+  });
+})();
+
+/* ---------------- Labels, dimensions, person, drop zone ---------------- */
+var labels=new THREE.Group(); special.labels=labels; scene.add(labels);
+for(var lk=1;lk<=N;lk++){
+  var sp=textSprite(String(lk),1.4,{bg:'#1C355D',fg:'#ffffff',border:'#ffffff',fs:54});
+  var a=theta(lk); sp.position.set((R+2)*Math.cos(a),1.0,(R+2)*Math.sin(a)); labels.add(sp);
+}
+var dims=new THREE.Group(); special.dims=dims; scene.add(dims);
+(function(){
+  var X=R+4.2, pts=[], lm=new THREE.LineBasicMaterial({color:col('#DC5F20')});
+  pts.push(X,0,0,X,TOTAL,0);
+  [0,TIER_TOP[0],TIER_TOP[1],TIER_TOP[2],TOTAL].forEach(function(y){pts.push(X-0.5,y,0,X+0.5,y,0)});
+  var g=new THREE.BufferGeometry(); g.setAttribute('position',new THREE.Float32BufferAttribute(pts,3));
+  var ls=new THREE.LineSegments(g,lm); dims.add(ls);
+  var items=[[4.4,'Tier 1  8.875'],[13.25,'Tier 2  8.750'],[22.13,'Tier 3  9.005'],[27.75,'Finial  2.235'],[TOTAL+1.6,'28.865 overall']];
+  items.forEach(function(it){var s=textSprite(it[1],1.5,{fs:40}); s.position.set(X+3.2,it[0],0); dims.add(s)});
+  var rg=new THREE.BufferGeometry(); rg.setAttribute('position',new THREE.Float32BufferAttribute([0,0.06,0,R,0.06,0],3));
+  dims.add(new THREE.Line(rg,lm));
+  var rs=textSprite('R 15.840 to column centres',1.5,{fs:40}); rs.position.set(R/2,1.2,0); dims.add(rs);
+  var ds=textSprite('Diameter 31.680 across column centres (derived)',1.5,{fs:40}); ds.position.set(0,0.8,-2.5); dims.add(ds);
+})();
+var person=new THREE.Group(); special.person=person; scene.add(person);
+(function(){
+  var skin=new THREE.MeshStandardMaterial({color:col('#d9b08c')}), vest=new THREE.MeshStandardMaterial({color:col('#DC5F20')}), legs=new THREE.MeshStandardMaterial({color:col('#1C355D')});
+  var l=new THREE.Mesh(new THREE.CylinderGeometry(0.11,0.09,0.85,10),legs); l.position.y=0.425;
+  var b=new THREE.Mesh(new THREE.CylinderGeometry(0.2,0.17,0.62,12),vest); b.position.y=1.16;
+  var h=new THREE.Mesh(new THREE.SphereGeometry(0.115,14,12),skin); h.position.y=1.62;
+  var hat=new THREE.Mesh(new THREE.SphereGeometry(0.125,14,8,0,TWO,0,Math.PI/2),new THREE.MeshStandardMaterial({color:col('#ffffff')})); hat.position.y=1.65;
+  [l,b,h,hat].forEach(function(m){m.castShadow=true;person.add(m)});
+  person.position.set(-(R+3.5),0,2.4);
+})();
+var zone=new THREE.Group(); special.zone=zone; zone.visible=false; scene.add(zone);
+function buildZone(w){
+  while(zone.children.length){var c=zone.children.pop(); c.geometry.dispose()}
+  var inner=R+0.9, outer=inner+w;
+  var fillM=new THREE.MeshBasicMaterial({color:col('#DC5F20'),transparent:true,opacity:0.22,side:THREE.DoubleSide,depthWrite:false});
+  var ring=new THREE.Mesh(new THREE.RingGeometry(inner,outer,128),fillM); ring.rotation.x=-Math.PI/2; ring.position.y=0.04; zone.add(ring);
+  var edge=new THREE.Mesh(new THREE.RingGeometry(outer-0.12,outer,128),new THREE.MeshBasicMaterial({color:col('#DC5F20'),side:THREE.DoubleSide})); edge.rotation.x=-Math.PI/2; edge.position.y=0.05; zone.add(edge);
+}
+buildZone(5);
+
+/* ---------------- Access scaffold: BDS TAZ001-11391-1 Rev D (reconstructed, indicative) ---------------- */
+renderer.localClippingEnabled=true;
+var scafClip=new THREE.Plane(new THREE.Vector3(0,-1,0),200);
+var scaf=new THREE.Group(); scene.add(scaf);
+var scafPlan=new THREE.Group(); scafPlan.visible=false; scene.add(scafPlan);
+var STAGES=17, LV=[2,4,6,8,10,12.5,15,17,19,21,23.5,26,28,29,30.5,32], LEV=[0.2].concat(LV), DECK_TOP=28.01, RO=17.59;
+var ZCOL={ring:'#3FAE49',cage:'#E5645F',fan:'#D61EC2',tf:'#B88ACB',atpac:'#F2961C',hoist:'#8A7A2E',stair:'#3FAE49',roof:'#3FAE49'};
+var ZLAYER={ring:'ring',cage:'cage',roof:'roof',stair:'stairs',atpac:'prot',tf:'prot',hoist:'hoist',fan:'fans'};
+var SL={ring:true,cage:true,roof:true,wrap:true,decks:false,fans:true,prot:true,stairs:true,hoist:true};
+var FANS=[[-37,-10],[56,125],[138,160]];
+var scafMeshes=[], scafPick=[], CAGE_CELLS=[], scafStage=STAGES, scafOn=true, scafVisible=true, scafNotesOn=true, planOn=false;
+function roofH(x){return 32-3*Math.min(Math.abs(x),17.6)/17.6}
+function smat(hex,o){return new THREE.MeshStandardMaterial(Object.assign({color:col(hex),roughness:0.5,metalness:0.5,clippingPlanes:[scafClip]},o||{}))}
+var TM={},DM={};
+Object.keys(ZCOL).forEach(function(z){
+  TM[z]={base:smat('#aab3bd'),zone:smat(ZCOL[z])};
+  DM[z]={base:smat('#b88a55',{metalness:0.05,roughness:0.85}),zone:smat(ZCOL[z],{metalness:0.05,roughness:0.85})};
+});
+var BRM=smat('#c8433a',{metalness:0.2}), SPM=smat('#37a84a',{metalness:0.2});
+var WRAP=new THREE.MeshStandardMaterial({color:col('#f4f7fb'),transparent:true,opacity:0.17,side:THREE.DoubleSide,roughness:0.9,metalness:0,depthWrite:false,clippingPlanes:[scafClip]});
+var FANM=new THREE.MeshStandardMaterial({color:col(ZCOL.fan),transparent:true,opacity:0.5,side:THREE.DoubleSide,roughness:0.8,metalness:0,depthWrite:false,clippingPlanes:[scafClip]});
+var tubeG=cyl(0.024,0.024,1,6,0,0,0,0,0,Math.PI/2), deckG=bx(1,0.045,1,0,0,0), beamG=bx(1,0.45,0.08,0,0,0);
+var _q=new THREE.Quaternion(), _d=new THREE.Vector3(), _c=new THREE.Vector3(), UX=new THREE.Vector3(1,0,0), YA=new THREE.Vector3(0,1,0);
+function V(x,y,z){return new THREE.Vector3(x,y,z)}
+function seg(a,b){
+  _d.copy(b).sub(a); var len=_d.length(); _d.normalize(); _q.setFromUnitVectors(UX,_d); _c.copy(a).add(b).multiplyScalar(0.5);
+  return new THREE.Matrix4().compose(_c.clone(),_q.clone(),new THREE.Vector3(len,1,1));
+}
+function deckM(cx,y,cz,ang,len,wid){
+  _q.setFromAxisAngle(YA,ang);
+  return new THREE.Matrix4().compose(new THREE.Vector3(cx,y,cz),_q.clone(),new THREE.Vector3(len,1,wid));
+}
+var TB={ring:[],cage:[],roof:[],stair:[],atpac:[],tf:[],hoist:[],fan:[]};
+var DK={ring:[],cage:[],atpac:[],tf:[],stair:[]};
+var BR={ring:[],cage:[],prot:[]}, SP=[], BM=[];
+
+/* External splayed access scaffold: inner band (14.00 to 15.09 m) and outer band (16.50 to 17.59 m), 1.09 m wide each */
+(function(){
+  [{n:38,r0:14.0,r1:15.09,ex:0},{n:44,r0:16.5,r1:RO,ex:1}].forEach(function(b){
+    var A=[[],[]], tops=[], i;
+    for(i=0;i<b.n;i++){
+      var a=i*TWO/b.n;
+      A[0].push(V(b.r0*Math.cos(a),0,b.r0*Math.sin(a)));
+      A[1].push(V(b.r1*Math.cos(a),0,b.r1*Math.sin(a)));
+      tops.push(roofH(A[1][i].x));
+      [0,1].forEach(function(r){TB.ring.push(seg(A[r][i],V(A[r][i].x,tops[i],A[r][i].z)))});
+    }
+    for(i=0;i<b.n;i++){
+      var j=(i+1)%b.n, top=Math.min(tops[i],tops[j]), am=(i+0.5)*TWO/b.n, rm=(b.r0+b.r1)/2;
+      LEV.forEach(function(y,k){
+        if(y>top) return;
+        var p=[A[0][i],A[1][i]].map(function(q){return V(q.x,y,q.z)});
+        var pn=[A[0][j],A[1][j]].map(function(q){return V(q.x,y,q.z)});
+        TB.ring.push(seg(p[0],pn[0]),seg(p[1],pn[1]),seg(p[0],p[1]));
+        if(y<DECK_TOP&&k>0){
+          DK.ring.push(deckM(rm*Math.cos(am),y+0.03,rm*Math.sin(am),Math.PI/2-am,2*rm*Math.sin(Math.PI/b.n)-0.04,(b.r1-b.r0)-0.08));
+          var ry=y+1.0;
+          if(ry<=top){var e=b.ex; TB.ring.push(seg(V(p[e].x,ry,p[e].z),V(pn[e].x,ry,pn[e].z)))}
+        }
+      });
+      if(b.ex&&i%3===0){
+        for(var k=0;k+2<LEV.length;k+=2){
+          var y0=LEV[k], y1=LEV[k+2]; if(y1>top) break;
+          var s=A[1][i], t=A[1][j];
+          BR.ring.push(((k/2)%2===0)?seg(V(s.x,y0,s.z),V(t.x,y1,t.z)):seg(V(t.x,y0,t.z),V(s.x,y1,s.z)));
+        }
+      }
+    }
+  });
+})();
+
+/* Internal birdcage on a 2.57 m grid, stepped cross plan, X braced to the 8th lift on the perimeter */
+(function(){
+  var c=2.57, W=[1,3,5,7,7,9,7,7,5,3,1], vk={}, ek={};
+  function key(a,b){return a+','+b}
+  W.forEach(function(w,jj){
+    var j=jj-5;
+    for(var ii=0;ii<w;ii++){
+      var i=ii-(w-1)/2, x0=2*i-1, x1=2*i+1, z0=2*j-1, z1=2*j+1;
+      CAGE_CELLS.push([i*c,j*c]);
+      [[x0,z0],[x1,z0],[x1,z1],[x0,z1]].forEach(function(p){vk[key(p[0],p[1])]=p});
+      [[[x0,z0],[x1,z0]],[[x1,z0],[x1,z1]],[[x1,z1],[x0,z1]],[[x0,z1],[x0,z0]]].forEach(function(e){
+        var a=e[0], b=e[1], fwd=(a[0]<b[0]||(a[0]===b[0]&&a[1]<b[1])), k=fwd?key(a[0],a[1])+'|'+key(b[0],b[1]):key(b[0],b[1])+'|'+key(a[0],a[1]);
+        if(ek[k]) ek[k].n++; else ek[k]={a:a,b:b,n:1};
+      });
+    }
+  });
+  Object.keys(vk).forEach(function(k){var p=vk[k]; TB.cage.push(seg(V(p[0]*c/2,0,p[1]*c/2),V(p[0]*c/2,28,p[1]*c/2)))});
+  Object.keys(ek).forEach(function(k){
+    var e=ek[k], a=e.a, b=e.b;
+    LEV.forEach(function(y,lv){
+      if(y>DECK_TOP) return;
+      TB.cage.push(seg(V(a[0]*c/2,y,a[1]*c/2),V(b[0]*c/2,y,b[1]*c/2)));
+      if(e.n===1&&lv<8&&lv+1<LEV.length){
+        var y1=LEV[lv+1];
+        BR.cage.push(seg(V(a[0]*c/2,y,a[1]*c/2),V(b[0]*c/2,y1,b[1]*c/2)),seg(V(b[0]*c/2,y,b[1]*c/2),V(a[0]*c/2,y1,a[1]*c/2)));
+      }
+    });
+  });
+  CAGE_CELLS.forEach(function(p){
+    LEV.forEach(function(y,lv){ if(lv>0&&y<DECK_TOP) DK.cage.push(deckM(p[0],y+0.03,p[1],0,c-0.06,c-0.06)) });
+  });
+})();
+
+/* Hoist masts, one each side of the workshop */
+[-8,8.1].forEach(function(hx){
+  var cs=[[-0.8,-0.8],[0.8,-0.8],[0.8,0.8],[-0.8,0.8]];
+  cs.forEach(function(p){TB.hoist.push(seg(V(hx+p[0],0,p[1]),V(hx+p[0],28,p[1])))});
+  for(var y=0.2;y<=28;y+=2){
+    for(var q=0;q<4;q++){
+      var p=cs[q], r=cs[(q+1)%4];
+      TB.hoist.push(seg(V(hx+p[0],y,p[1]),V(hx+r[0],y,r[1])));
+      if(y+2<=28) TB.hoist.push(seg(V(hx+p[0],y,p[1]),V(hx+r[0],y+2,r[1])));
+    }
+  }
+});
+
+/* System stair towers (positions to be confirmed on site per the drawing) */
+[280,112].forEach(function(bd){
+  var b=bd*Math.PI/180, u=V(Math.sin(b),0,-Math.cos(b)), v=V(Math.cos(b),0,Math.sin(b)), C=u.clone().multiplyScalar(RO+1.45), am=Math.atan2(u.z,u.x);
+  function pt(du,dv,y){return C.clone().addScaledVector(u,du).addScaledVector(v,dv).setY(y)}
+  var cs=[[-1.3,-1.3],[-1.3,1.3],[1.3,1.3],[1.3,-1.3]];
+  cs.forEach(function(p){TB.stair.push(seg(pt(p[0],p[1],0),pt(p[0],p[1],28)))});
+  LEV.forEach(function(y,k){
+    if(y>28.01) return;
+    for(var q=0;q<4;q++){var p=cs[q], r=cs[(q+1)%4]; TB.stair.push(seg(pt(p[0],p[1],y),pt(r[0],r[1],y)))}
+    [-1.3,1.3].forEach(function(dv){
+      var a=pt(-1.3,dv,y), ring=a.clone().setY(0).normalize().multiplyScalar(RO).setY(y);
+      TB.stair.push(seg(a,ring));
+    });
+    if(k>0){
+      var yp=LEV[k-1], side=(k%2)?-1.3:1.3, ctr=pt((k%2)?0.65:-0.65,0,y);
+      TB.stair.push(seg(pt(-1.3,side,yp),pt(1.3,side,y)));
+      DK.stair.push(deckM(ctr.x,y+0.03,ctr.z,Math.PI/2-am,2.5,1.2));
+    }
+  });
+});
+
+/* AT-PAC asset protection (2.57 m square, 2 m lift, braced on four sides) */
+[[-22,3.6],[-21,12.1],[4.8,17.3],[11.5,18]].forEach(function(p){
+  var h=1.285, cs=[[-h,-h],[h,-h],[h,h],[-h,h]];
+  cs.forEach(function(q){TB.atpac.push(seg(V(p[0]+q[0],0,p[1]+q[1]),V(p[0]+q[0],2,p[1]+q[1])))});
+  [0.2,2].forEach(function(y){
+    for(var q=0;q<4;q++){var a=cs[q], b=cs[(q+1)%4]; TB.atpac.push(seg(V(p[0]+a[0],y,p[1]+a[1]),V(p[0]+b[0],y,p[1]+b[1])))}
+  });
+  for(var q=0;q<4;q++){var a=cs[q], b=cs[(q+1)%4]; BR.prot.push(seg(V(p[0]+a[0],0.2,p[1]+a[1]),V(p[0]+b[0],2,p[1]+b[1])))}
+  DK.atpac.push(deckM(p[0],2.03,p[1],0,2.57,2.57));
+});
+
+/* Beamed tube and fitting protection over the existing building: 7.44 m overall, 5.54 m span, 4 m high */
+(function(){
+  var cx=7.7, cz=24.4, W=3.72, bw=0.95, nSt=7, bl=1.3, z0=cz-(nSt-1)*bl/2, xs=[cx-W,cx-W+bw,cx+W-bw,cx+W], m, l;
+  for(m=0;m<nSt;m++){
+    var z=z0+m*bl;
+    xs.forEach(function(x){TB.tf.push(seg(V(x,0,z),V(x,4,z)))});
+    [0.2,2,4].forEach(function(y){TB.tf.push(seg(V(xs[0],y,z),V(xs[1],y,z)),seg(V(xs[2],y,z),V(xs[3],y,z)))});
+    BM.push(new THREE.Matrix4().compose(V(cx,4.225,z),new THREE.Quaternion(),new THREE.Vector3(5.54,1,1)));
+    if(m<nSt-1){
+      xs.forEach(function(x){[0.2,2,4].forEach(function(y){TB.tf.push(seg(V(x,y,z),V(x,y,z+bl)))})});
+      [xs[0],xs[3]].forEach(function(x){
+        for(l=0;l<2;l++){
+          var y0=[0.2,2][l], y1=[2,4][l];
+          BR.prot.push(((m+l)%2===0)?seg(V(x,y0,z),V(x,y1,z+bl)):seg(V(x,y1,z),V(x,y0,z+bl)));
+        }
+      });
+    }
+  }
+  DK.tf.push(deckM(cx,4.5,cz,0,7.44,(nSt-1)*bl+0.1));
+})();
+
+/* Roof: trusses every 2.57 m, ridge 32 m, eaves 29 m, double spurs forming the ridge */
+(function(){
+  var Rr=17.7, step=2.57, zs=[], xm={}, k;
+  for(k=-6;k<=6;k++) zs.push(k*step);
+  zs.forEach(function(z){
+    var x=Math.sqrt(Rr*Rr-z*z), ye=roofH(x), A=V(-x,ye,z), B=V(x,ye,z), T=V(0,32,z);
+    xm[z]=x;
+    TB.roof.push(seg(A,T),seg(T,B),seg(A,B));
+    TB.roof.push(seg(V(-x,ye+0.15,z),V(0,32.15,z)),seg(V(0,32.15,z),V(x,ye+0.15,z)));
+    SP.push(seg(T,V(-x*0.5,ye,z)),seg(T,V(x*0.5,ye,z)));
+  });
+  for(var m=-6;m<=6;m++){
+    var px=m*step;
+    for(k=0;k<zs.length-1;k++){
+      if(Math.abs(px)<=Math.min(xm[zs[k]],xm[zs[k+1]])) TB.roof.push(seg(V(px,roofH(px)+0.15,zs[k]),V(px,roofH(px)+0.15,zs[k+1])));
+    }
+  }
+})();
+
+/* Catch fans at 8 m, 3.2 m wide */
+(function(){
+  FANS.forEach(function(f){
+    var g=new THREE.RingGeometry(RO+0.06,RO+3.26,48,1,(90-f[1])*Math.PI/180,(f[1]-f[0])*Math.PI/180);
+    g.rotateX(-Math.PI/2); g.translate(0,8,0);
+    scafPlan.userData.fans=scafPlan.userData.fans||[];
+    var m=new THREE.Mesh(g,FANM); m.userData={kind:'fan',zone:'fan',layers:['fans']}; scaf.add(m); scafMeshes.push(m);
+  });
+  for(var i=0;i<44;i++){
+    var a=i*TWO/44, bear=Math.atan2(Math.cos(a),-Math.sin(a))*180/Math.PI;
+    var inside=FANS.some(function(f){return bear>=f[0]&&bear<=f[1]});
+    if(!inside) continue;
+    var p0=V(RO*Math.cos(a),8,RO*Math.sin(a)), p1=V((RO+3.2)*Math.cos(a),8,(RO+3.2)*Math.sin(a));
+    TB.fan.push(seg(p0,p1),seg(p1,V(RO*Math.cos(a),6.4,RO*Math.sin(a))));
+  }
+})();
+
+/* Build instanced meshes */
+function mkI(geom,mats,mat,u){
+  if(!mats.length) return;
+  var m=new THREE.InstancedMesh(geom,mat,mats.length);
+  mats.forEach(function(x,i){m.setMatrixAt(i,x)});
+  m.instanceMatrix.needsUpdate=true; m.frustumCulled=false; m.userData=u;
+  scaf.add(m); scafMeshes.push(m); scafPick.push(m);
+}
+Object.keys(TB).forEach(function(z){mkI(tubeG,TB[z],TM[z].base,{kind:'tube',zone:z,layers:[ZLAYER[z]],roofish:z==='roof'})});
+Object.keys(DK).forEach(function(z){mkI(deckG,DK[z],DM[z].base,{kind:'deck',zone:z,layers:[ZLAYER[z],'decks']})});
+Object.keys(BR).forEach(function(k){mkI(tubeG,BR[k],BRM,{kind:'brace',zone:(k==='prot'?'atpac':k),layers:[k]})});
+mkI(tubeG,SP,SPM,{kind:'brace',zone:'roof',layers:['roof'],roofish:true});
+mkI(beamG,BM,TM.tf.base,{kind:'tube',zone:'tf',layers:['prot']});
+
+/* Encapsulation sheeting: facade follows the gable, roof sheeting over the trusses */
+(function(){
+  var Rw=17.75, n=180, pos=[], idx=[], i;
+  for(i=0;i<=n;i++){var a=i*TWO/n, x=Rw*Math.cos(a), z=Rw*Math.sin(a); pos.push(x,0,z,x,roofH(x)+0.1,z)}
+  for(i=0;i<n;i++){idx.push(i*2,i*2+2,i*2+1,i*2+1,i*2+2,i*2+3)}
+  var g=new THREE.BufferGeometry(); g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3)); g.setIndex(idx); g.computeVertexNormals();
+  var w=new THREE.Mesh(g,WRAP); w.userData={kind:'wrap',zone:'ring',layers:['wrap']}; w.renderOrder=3; scaf.add(w); scafMeshes.push(w);
+  var rp=[], ri=[], nx=70;
+  for(i=0;i<=nx;i++){var x2=-Rw+i*2*Rw/nx, zm=Math.sqrt(Math.max(Rw*Rw-x2*x2,0)); rp.push(x2,roofH(x2)+0.1,-zm,x2,roofH(x2)+0.1,zm)}
+  for(i=0;i<nx;i++){ri.push(i*2,i*2+2,i*2+1,i*2+1,i*2+2,i*2+3)}
+  var g2=new THREE.BufferGeometry(); g2.setAttribute('position',new THREE.Float32BufferAttribute(rp,3)); g2.setIndex(ri); g2.computeVertexNormals();
+  var r=new THREE.Mesh(g2,WRAP); r.userData={kind:'wrap',zone:'roof',layers:['wrap'],roofish:true}; r.renderOrder=3; scaf.add(r); scafMeshes.push(r);
+})();
+
+/* BDS plan zones painted on the ground, with labels */
+(function(){
+  function tile(geom,hex,op){
+    var m=new THREE.Mesh(geom,new THREE.MeshBasicMaterial({color:col(hex),transparent:true,opacity:op,depthWrite:false,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2}));
+    m.position.y=0.07; scafPlan.add(m);
+  }
+  function flat(w,d,x,z){var g=new THREE.PlaneGeometry(w,d); g.rotateX(-Math.PI/2); g.translate(x,0,z); return g}
+  function label(t,x,z){var s=textSprite(t,1.1,{fs:38}); s.position.set(x,1.4,z); scafPlan.add(s)}
+  var rg=new THREE.RingGeometry(14.0,RO,96); rg.rotateX(-Math.PI/2); tile(rg,ZCOL.ring,0.35);
+  tile(merge(CAGE_CELLS.map(function(p){return flat(2.51,2.51,p[0],p[1])})),ZCOL.cage,0.35);
+  tile(flat(10.7,6.3,1.5,0),'#6EE7E7',0.5);
+  [-8,8.1].forEach(function(x){tile(flat(1.6,1.6,x,0),'#8A7A2E',0.7); label('Hoist',x,-1.6)});
+  tile(flat(1.6,3.5,-7.6,5.6),'#2E9E57',0.6); tile(flat(3.5,1.6,-9,14.2),'#2E9E57',0.6);
+  [[-22,3.6],[-21,12.1],[4.8,17.3],[11.5,18]].forEach(function(p){tile(flat(2.57,2.57,p[0],p[1]),ZCOL.atpac,0.55)});
+  tile(flat(7.44,7.9,7.7,24.4),ZCOL.tf,0.5);
+  FANS.forEach(function(f){
+    var g=new THREE.RingGeometry(RO+0.06,RO+3.26,48,1,(90-f[1])*Math.PI/180,(f[1]-f[0])*Math.PI/180); g.rotateX(-Math.PI/2); tile(g,ZCOL.fan,0.4);
+  });
+  label('Access scaffold ring',0,-15.8); label('Internal birdcage',0,-9); label('Internal workshop',1.5,0);
+  label('Liftbot, location TBC',-12,5.6); label('AT-PAC protection',-22,3.6); label('AT-PAC protection',-21,12.1);
+  label('AT-PAC protection',4.8,17.3); label('AT-PAC protection',11.5,18); label('Beamed protection',7.7,24.4);
+})();
+
+/* Visibility, erection scafStage and colour modes */
+function stageLabel(s){return s<=0?'Not started':(s>=STAGES?'Complete with roof':'Lift '+s+' ('+LV[s-1]+' m)')}
+function refreshScaf(){
+  var ex=(typeof explode==='number')?explode:0;
+  scafVisible=scafOn&&ex<0.01;
+  scafMeshes.forEach(function(m){
+    var L=m.userData.layers, ok=scafVisible, i;
+    for(i=0;i<L.length&&ok;i++) ok=SL[L[i]];
+    if(ok&&m.userData.roofish) ok=(scafStage>=STAGES);
+    m.visible=ok;
+  });
+  scafPlan.visible=scafVisible&&planOn;
+  scafClip.constant=(scafStage>=STAGES)?200:(scafStage<=0?-1:LV[scafStage-1]+0.02);
+}
+function setZone(on){
+  scafMeshes.forEach(function(m){
+    var u=m.userData;
+    if(u.kind==='tube') m.material=on?TM[u.zone].zone:TM[u.zone].base;
+    else if(u.kind==='deck') m.material=on?DM[u.zone].zone:DM[u.zone].base;
+  });
+}
+$('#sOn').addEventListener('change',function(){scafOn=this.checked; refreshScaf()});
+$('#rStage').addEventListener('input',function(){scafStage=+this.value; $('#oStage').textContent=stageLabel(scafStage); refreshScaf()});
+document.querySelectorAll('[data-sl]').forEach(function(cb){cb.addEventListener('change',function(){SL[cb.dataset.sl]=cb.checked; refreshScaf()})});
+$('#sZone').addEventListener('change',function(){setZone(this.checked)});
+$('#sPlan').addEventListener('change',function(){planOn=this.checked; refreshScaf()});
+$('#sNotes').addEventListener('change',function(){scafNotesOn=this.checked});
+$('#oVol').textContent='about '+(Math.round(17.75*17.75*(32*Math.PI-4)/1000)*1000).toLocaleString('en-GB')+' m³';
+refreshScaf();
+
+/* Notes taken from the BDS drawing set, with planning flags added where the set leaves a gap */
+function SCAFNOTES(){
+  return [
+  {kind:'scaf',sheet:'2 to 9',title:'Catch fans at 8 m',pos:V(19.3,8,0),dist:12,
+   text:'Catch fans are to be installed at 8 m high, following the manufacturer’s guidance. As drawn they sit at the upper left, right and lower right of the plan. On the aerial orientation that puts them on the Barrack Road (west), Admiralty Road (north) and north-east sides. [VERIFY] the orientation with BDS. Sheet 7 also requires protection of the public to be maintained in line with the NASC guidance and TG20:21 that it cites.',
+   flag:'The drawing gives a width only for the sub-station fan (3.2 m). The model uses 3.2 m for all three fans. On the aerial the holder is only a few metres from the Admiralty Road and Barrack Road kerbs, so the 17.6 m ring and the 3.2 m fans appear to reach the footway and possibly the carriageway. Distances here are read off a screenshot and are approximate. Confirm against the survey, and check pedestrian protection, any highway licence and closure needs, and fan widths.'},
+  {kind:'scaf',sheet:'2, 3, 5 and 6',title:'Sub-station protection',pos:V(9.9,8,16.5),dist:12,
+   text:'Because of the distance between the scaffold and the sub-station, no protection scaffolds are required. A 3.2 m wide catch fan is required at the sub-station location as a protective measure.',
+   flag:'The drawing gives the reason (distance) but not the distance. Confirm the electrical safety clearance and the asset owner’s requirements.'},
+  {kind:'scaf',sheet:'2 to 9',title:'Roof opened for cranage',pos:V(0,32.6,0),dist:16,
+   text:'Items that must come out by lifting from the top may need a section of the roof encapsulation removed temporarily to allow cranage, provided it is reinstated immediately after removal.',
+   flag:'The drawing does not state a separate design case for the open roof condition. Ask BDS to confirm the wind and loading case, and who controls the lift and the exclusion zone.'},
+  {kind:'scaf',sheet:'2 and 5',title:'Hoists and Liftbot',pos:V(-8,14,0),dist:10,
+   text:'A Geda 300 hoist (maximum 300 kg) is shown at two positions either side of the workshop, for erection only, and is dismantled once the scaffold is complete. A Kewazo Liftbot elevator is shown at two positions on sheet 5, tied to the scaffold at flat 750 mm beamed lifts, with a maximum imposed load of 20.2 kN, founded on 1.2 x 2.4 x 0.020 m steel road plates. Liftbot locations are to be confirmed on site.',
+   flag:'With the hoist removed after erection, the Liftbot is the stated route for materials. Check its capacity and cycle time against coating materials, blast media and waste volumes.'},
+  {kind:'scaf',sheet:'5, 6, 7 and 9',title:'Stair towers and ladder access',pos:V(-18.75,10,-3.3),dist:12,
+   text:'System stair towers are to be erected and dismantled to the manufacturer’s guidance, with exact locations to be confirmed on site, and all towers linked to the tube and fitting scaffold. Sheet 5 requires aluminium ladder hatch decks with no more than 30 m between access and egress points, citing the NASC ladder access guidance. Ladder beams may cantilever to a maximum of 1 m, secured in line with the rescue plan. The loading note allows a maximum of 25 operatives on a stair tower.',
+   flag:'The outer row of the ring is about 110 m round in this model. With two towers shown, check the 30 m limit, the rescue plan and the 25 operative limit against final tower locations and the planned workforce.'},
+  {kind:'scaf',sheet:'1 to 3',title:'Asset protection and offsets',pos:V(-22,2.5,3.6),dist:9,
+   text:'The asset offset plan (introduced at Rev A) uses red boxes for asset locations and green dimensions for offsets. AT-PAC protection scaffolds (2.57 m square, 2 m lift, braced on all four sides) cover assets on the west and south sides. A beamed tube and fitting protection (5.54 m span, 4 m high) is shown over the existing building to the south.',
+   flag:'Protection height varies on site per the typical section, so check clearance against measured asset heights. Positions in the model are read off the plan and are indicative.'},
+  {kind:'scaf',sheet:'3 and 7',title:'Ground and leg loads',pos:V(-9.3,1,-14.3),dist:10,
+   text:'The Principal Contractor is to confirm the ground can carry the imposed loads, including any spreaders. Standards inside the green boxed area on sheet 3 are founded on steel road plates. Standards otherwise sit on double stacked 38 mm sole pads, 450 mm by 225 mm. The load plan shows unfactored leg loads between 22.75 and 33.31 kN.',
+   flag:'The base survey on the drawing labels features around the footprint, including filled syphon pits, a concrete tank filled with 6F5 and cable ducts. [VERIFY] against the survey, and confirm underground services and bearing before sole plates go down.'},
+  {kind:'scaf',sheet:'All sheets',title:'Design loadings',global:true,
+   text:'Unfactored maximums, which must not be exceeded: access scaffold 2 kN/m² (200 kg/m²) on one lift; Niko Rail 5 kN (500 kg) on one lift; beamed protection 0.75 kN/m² (75 kg/m²) on one lift; Geda 300 hoist 300 kg; maximum snow load 0.5 kN/m²; maximum wind load 0.237 kN/m². No alteration that could affect stability without prior written notice to BDS.',
+   flag:'The single lift limit governs staging of blast media, paint, plant and waste on the decks. Check the working method against it, and agree the wind speed at which work stops, since the drawing states a load, not a site wind trigger.'},
+  {kind:'scaf',sheet:'3 to 6',title:'Earthing, bonding and lightning protection',global:true,
+   text:'The Principal Contractor is responsible for ensuring that any scaffold earthing, bonding and lightning protection requirements are identified, assessed, designed, installed and maintained by a suitably qualified and competent electrical engineer, before and during scaffold operations.',
+   flag:'On a 29 to 32 m structure next to an electrical sub-station, confirm who holds this duty in the contract chain and where the design sits in the RAMS.'},
+  {kind:'scaf',sheet:'2 to 9',title:'Telegraph poles and cables',global:true,
+   text:'The scaffold is to avoid telegraph poles and cables at all times. The drawing does not mark their positions.',
+   flag:'Obtain pole and cable positions and clearances before erection and show them on the layout.'},
+  {kind:'scaf',sheet:'7',title:'Erection risks on the risk panel',global:true,
+   text:'Scaffold operatives must have a safe system of work on leading edges, clipped on at all times. All boards must be secured against high winds. Limited survey drawings were supplied, so building dimensions are approximate and all dimensions are to be checked before erection. Class B couplers are required on all load bearing connections (SWL 9.1 kN).'},
+  {kind:'scaf',sheet:'2 to 9',title:'Sheeting and baffles',global:true,
+   text:'The scaffold facade is to be clad with shrink wrap. Baffles may be installed where required, without adversely affecting the structural integrity of the scaffold.',
+   flag:'Sheeting and baffles add wind area. Confirm they are covered by the 0.237 kN/m² wind load, and the strip-out trigger.'},
+  {kind:'scaf',sheet:'All sheets',title:'No ties relied on',global:true,
+   text:'Fundamental note 7 gives the maximum tie grid as N/A on every sheet.',
+   flag:'Ask BDS what provides lateral stability and whether ties to the gasholder are ruled out. Drawing 0215 records corroded fixings and failed cantilever brackets, so the structure should not be assumed to be a tie or anchorage point.'},
+  {kind:'scaf',sheet:'2 to 6 and 8 to 12',title:'Risk page reference',global:true,
+   text:'These sheets send the reader to TAZ001-11393-1 page 07 for highlighted risks and hazards. This set is TAZ001-11391-1, and its risk panel is on sheet 7.',
+   flag:'Confirm whether the reference is a typing error or a separate drawing, and that the risk panel has been reviewed against the RAMS.'},
+  {kind:'scaf',sheet:'All sheets',title:'Design codes cited',global:true,
+   text:'The notes cite BS 2482, BS EN 12811-1, BS EN 12812-1:2008, TG20:21, BS EN 1991-1-1:2002, BS EN 1991-1-4:2005 and BS EN 13374:2013.',
+   flag:'The drawing gives BS EN 12811-1 the wording of the older BS 5973 title. The published title is Temporary works equipment. Scaffolds. Performance requirements and general design (BS EN 12811-1:2003, which supersedes BS 5973:1993). The BSI scope excludes temporary roofs, so ask BDS which standard governs the roof truss design. The BS EN 12812-1:2008 designation and the Eurocode editions are [VERIFY].'}
+  ];
+}
+
+/* ---------------- Findings from drawing 0215 ---------------- */
+function colP(k,y,r){var a=theta(k); return new THREE.Vector3(r*Math.cos(a),y,r*Math.sin(a))}
+function bayP(b,y,off){var tm=theta(b)+Math.PI/N, r=R*Math.cos(Math.PI/N)+off; return new THREE.Vector3(r*Math.cos(tm),y,r*Math.sin(tm))}
+var chord57=tip(5).add(tip(7)).multiplyScalar(0.5); chord57.y=PLAN_Y+0.2;
+var FINDINGS=[
+ {ref:'4.1.1',title:'Coating system failed',global:true,
+  text:'The drawing records the corrosion protection system as failed throughout the guide frame structure.'},
+ {ref:'4.1.2',title:'Modified low level lattice beam',tier:1,pos:bayP(12,8.7,0.9),dist:9,
+  text:'The lowest level lattice beam adjacent to column 12 has had both top chords and the associated bracing removed at the access ladder position. The model shows this in the bay from column 12 to 13; the drawing does not state which side of column 12.'},
+ {ref:'4.1.3',title:'High level cantilever RSC brackets',tier:3,pos:colP(3,26.8,R-1.0),dist:7,
+  text:'The high level cantilevered RSC brackets that support the plan bracing are severely corroded, with major loss of section, perforations and failed fixings at all column locations. Notable excessive deflection was also recorded.',
+  flag:'These brackets carry the plan bracing. Do not treat them, or the bracing they support, as an anchorage or work platform until a structural engineer confirms capacity.'},
+ {ref:'4.1.4',title:'Plan bracing channels retain water',tier:3,pos:chord57,dist:9,
+  text:'The high level channel plan bracing is laid with its legs upward, so it collects rainwater. Surface corrosion and lamination of some members were observed.',
+  flag:'Ponded water and lamination mean these sections should not be assumed sound for foot or equipment loads.'},
+ {ref:'4.1.5',title:'Water pockets on guide rail brackets',tier:2,pos:colP(7,16.9,R-0.75),dist:6,
+  text:'Recesses in the top of the rectangular guide rail brackets, above the mid level bolt access cover plates, fill with rainwater. Bolts protruding into the pooled water show advanced corrosion.'},
+ {ref:'4.1.6',title:'Damaged finial plates, inner face',tier:3,pos:colP(12,28.2,R-0.15),dist:7,
+  text:'Finial capping plates on the inner face were damaged at columns 11, 12, 13 and 14. The model tilts the plates at these columns.',
+  flag:'Damaged plates at the highest point are a dropped object source. Include them in exclusion zone and tool tethering planning.'},
+ {ref:'4.1.6',title:'Damaged finial plates, outer face',tier:3,pos:colP(6,28.2,R+0.15),dist:7,
+  text:'Finial capping plates on the outer face were damaged at columns 1, 6, 10 and 11. Column 11 appears on both lists. Columns 1, 6, 10, 11, 12, 13 and 14 are tilted in the model.'},
+ {ref:'4.1.7',title:'Baseplate cells hold water',tier:1,pos:colP(9,0.2,R+0.55),dist:5,
+  text:'Vertical stiffener walls on the cast baseplates form small cells at the surface that capture and hold rainwater.'},
+ {ref:'4.1.8',title:'Guide rail corrosion and section loss',tier:2,pos:colP(5,13,R-0.75),dist:7,
+  text:'All guide rails show surface corrosion from top to bottom. In places this has led to lamination, loss of steel section and perforations in the web or flanges.',
+  flag:'Perforated rail webs and flanges may not be suitable as a fixing or anchorage point.'},
+ {ref:'4.1.9',title:'Damaged lattice bracing, columns 6 to 7',tier:2,pos:bayP(6,16.9,0.6),dist:8,
+  text:'Damage to the bracing of the lattice beams between columns 6 and 7 was noted. The drawing does not state the level, so the marker sits on the mid level beam.'},
+ {ref:'4.1.10',title:'Severe corrosion at top end plates',tier:3,pos:colP(9,26.6,R-0.2),dist:6,
+  text:'The uppermost end plate connection assemblies are severely corroded, particularly where the top horizontal brace connection plates meet adjoining steel immediately below.',
+  flag:'This affects any work at the crown. Confirm the condition before load is applied.'},
+ {ref:'4.1.11',title:'Jacking at lapped bracing junctions',tier:1,pos:bayP(3,8.6,0.5),dist:7,
+  text:'Moisture retained between lapping brace elements has caused accelerated corrosion and jacking, especially of the horizontal flat braces at top and bottom of the lattice beams.'},
+ {ref:'4.1.12',title:'Deflected lattice bracing',tier:2,pos:bayP(10,17.3,0.5),dist:7,
+  text:'Isolated cases of bowed or deflected bracing to the lattice beams were observed.'},
+ {ref:'4.1.13',title:'Corroded fixings',tier:3,pos:colP(2,25.8,R+0.45),dist:6,
+  text:'Fixings to the lattice beams, column finials and guide rail brackets were all noted as corroded.'},
+ {ref:'4.1.14',title:'Isolated missing bolts',tier:3,pos:colP(13,25.9,R+0.45),dist:6,
+  text:'Missing bolt fixings were occasionally observed. The drawing does not give locations.',
+  flag:'Missing bolts mean connection integrity cannot be assumed at that joint. Confirm before any load or access on adjacent steelwork.'},
+ {ref:'4.1.15',title:'Maker’s plate missing, column 8',tier:1,pos:colP(8,5.0,R+0.5),dist:5,
+  text:'The cast iron maker’s record plate is missing from column 8.'},
+ {ref:'4.1.17',title:'Corroded end connection packers',tier:2,pos:bayP(1,16.8,0.6),dist:6,
+  text:'Steel packer plates at the lattice beam ends, where they meet the column bolt boxes, are corroded throughout, from general surface corrosion to lamination.'}
+].concat(SCAFNOTES());
+FINDINGS.forEach(function(f,i){
+  f.idx=i;
+  if(f.pos){ f.anchor=new THREE.Object3D(); f.anchor.position.copy(f.pos); (f.tier?tiers[f.tier]:root).add(f.anchor); }
+});
+
+/* ---------------- UI: pins, list, card ---------------- */
+var pinsEl=$('#pins'), pinsOn=true, current=-1, pinNo=0, sNo=0;
+FINDINGS.forEach(function(f){
+  var li=document.createElement('li'), b=document.createElement('button'), no=document.createElement('span');
+  var isS=(f.kind==='scaf'); no.className='no'+(f.pos?'':' g')+(isS?' s':''); no.textContent=f.pos?(isS?'S'+(++sNo):String(++pinNo)):'all'; if(!f.pos||isS) no.style.fontSize='9px';
+  f.no=f.pos?no.textContent:null;
+  var t=document.createElement('span'); t.innerHTML='<strong>'+f.title+'</strong><small>'+(isS?'BDS sheet '+f.sheet:'Clause '+f.ref)+'</small>';
+  b.appendChild(no); b.appendChild(t); li.appendChild(b); $(isS?'#slist':'#flist').appendChild(li);
+  b.addEventListener('click',function(){selectFinding(f.idx,true)});
+  if(f.pos){
+    var p=document.createElement('button'); p.className='pin'+(isS?' s':''); p.textContent=f.no; p.setAttribute('aria-label',(isS?'Scaffold note ':'Finding ')+f.no+': '+f.title);
+    p.addEventListener('click',function(){selectFinding(f.idx,false)}); pinsEl.appendChild(p); f.el=p;
+  }
+});
+function esc(s){return s}
+var FLAG_LEAD='Planning flag, not from the drawing.';
+function findingRef(f){return f.kind==='scaf'?'BDS drawing TAZ001-11391-1 Rev D, sheet '+f.sheet+(f.no?', marker '+f.no:''):'Condition Inspection Report clause '+f.ref+(f.no?', marker '+f.no:'')+'. Source: GA 12577-CDY-XX-ZZ-D-S-0215 P01'}
+function selectFinding(i,fly){
+  current=i; var f=FINDINGS[i], c=$('#card');
+  FINDINGS.forEach(function(x){if(x.el) x.el.setAttribute('aria-current',x===f?'true':'false')});
+  var h='<h3>'+f.title+'</h3><div class="ref">'+findingRef(f)+'</div><p>'+f.text+'</p>';
+  if(f.flag) h+='<div class="flag"><strong>'+FLAG_LEAD+'</strong> '+f.flag+'</div>';
+  h+='<div class="nav"><button class="btn" id="cPrev">Previous</button><button class="btn" id="cNext">Next</button><button class="btn" id="cClose">Close</button></div>';
+  c.innerHTML=h; c.hidden=false;
+  $('#cPrev').onclick=function(){selectFinding((current+FINDINGS.length-1)%FINDINGS.length,true)};
+  $('#cNext').onclick=function(){selectFinding((current+1)%FINDINGS.length,true)};
+  $('#cClose').onclick=function(){c.hidden=true;current=-1;FINDINGS.forEach(function(x){if(x.el) x.el.setAttribute('aria-current','false')})};
+  if(fly){
+    if(f.global){ if(f.kind==='scaf'){ camTo('scaffold'); } else { setCond(true); $('#cCond').checked=true; camTo('overview'); } }
+    else{
+      var tg=new THREE.Vector3(); f.anchor.getWorldPosition(tg);
+      var out=new THREE.Vector3(tg.x,0,tg.z); if(out.length()<1) out.set(1,0,0); out.normalize();
+      var d=f.dist||8, pos=tg.clone().add(out.multiplyScalar(d)); pos.y=Math.max(tg.y+d*0.3,2.5);
+      flyTo(pos,tg);
+    }
+  }
+}
+
+/* ---------------- Camera presets and fly-to ---------------- */
+var fly=null, reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function flyTo(pos,target,ms){
+  ms=reduce?1:(ms||1100);
+  fly={t0:performance.now(),ms:ms,p0:camera.position.clone(),a0:controls.target.clone(),p1:pos.clone(),a1:target.clone()};
+}
+var CAMS={
+  overview:[[-60,38,64],[0,14,0]], scaffold:[[-72,42,76],[0,15,0]], plan:[[0,115,0.01],[0,10,0]], plannorth:[[-0.01,115,0],[0,10,0]], elev:[[0,17,88],[0,14,0]],
+  crown:[[11,37,26],[0,27,0]], base:[[20,3.5,22],[0,4,0]], ground:[[0,1.7,36],[0,13,0]]
+};
+function camTo(k){var c=CAMS[k]; flyTo(new THREE.Vector3(c[0][0],c[0][1],c[0][2]),new THREE.Vector3(c[1][0],c[1][1],c[1][2]))}
+document.querySelectorAll('[data-cam]').forEach(function(b){b.addEventListener('click',function(){camTo(b.dataset.cam)})});
+controls.addEventListener('start',function(){fly=null});
+
+/* ---------------- Controls wiring ---------------- */
+function toast(msg){var t=$('#toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(toast.h); toast.h=setTimeout(function(){t.classList.remove('on')},2400)}
+document.querySelectorAll('.tabs button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.tabs button').forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false')});
+    ['view','layers','cond','scaf','data'].forEach(function(n){$('#tab-'+n).hidden=(n!==b.dataset.tab)});
+  });
+});
+var explode=0;
+function applyExplode(){
+  var e=explode*6; tiers[1].position.y=0; tiers[2].position.y=e; tiers[3].position.y=2*e; refreshScaf();
+}
+$('#rExplode').addEventListener('input',function(){explode=this.value/100; $('#oExplode').textContent=this.value+'%'; applyExplode()});
+var cutY=200;
+$('#rCut').addEventListener('input',function(){
+  var v=parseFloat(this.value); var off=v>=29.9;
+  cutY=off?200:v; clipPlane.constant=cutY; $('#oCut').textContent=off?'Off':v.toFixed(1)+' m';
+});
+$('#rSun').addEventListener('input',function(){setSun(+this.value); $('#oSun').textContent=this.value+'°'});
+$('#cRotate').addEventListener('change',function(){controls.autoRotate=this.checked});
+if(reduce) $('#cRotate').checked=false;
+$('#cLabels').addEventListener('change',function(){labels.visible=this.checked});
+$('#cDims').addEventListener('change',function(){dims.visible=this.checked});
+$('#cPerson').addEventListener('change',function(){person.visible=this.checked});
+$('#cPins').addEventListener('change',function(){pinsOn=this.checked});
+document.querySelectorAll('[data-layer]').forEach(function(cb){
+  cb.addEventListener('change',function(){
+    var l=cb.dataset.layer;
+    if(layerMeshes[l]) layerMeshes[l].forEach(function(m){m.visible=cb.checked});
+    else if(special[l]) special[l].visible=cb.checked;
+  });
+});
+$('#rZone').addEventListener('input',function(){buildZone(+this.value); $('#oZone').textContent=this.value+' m'});
+function setCond(on){allMeshes.forEach(function(m){var c=m.userData.cat; if(MAT[c]) m.material=on?MAT[c].cond:MAT[c].base})}
+$('#cCond').addEventListener('change',function(){setCond(this.checked)});
+
+/* Theme */
+function applyTheme(){
+  var d=isDark();
+  ground.material.map.dispose(); ground.material.map=groundTex(d); ground.material.needsUpdate=true;
+  hemi.color.copy(col(d?'#6d86b0':'#dfe8f5')); hemi.groundColor.copy(col(d?'#20252e':'#8a8f98')); hemi.intensity=d?1.0:0.9;
+}
+$('#btnTheme').addEventListener('click',function(){
+  document.documentElement.setAttribute('data-theme',isDark()?'light':'dark'); applyTheme();
+});
+if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){if(!document.documentElement.getAttribute('data-theme')) applyTheme()});
+applyTheme();
+$('#btnPanel').addEventListener('click',function(){
+  var s=$('#side'); s.classList.toggle('collapsed'); this.setAttribute('aria-expanded',!s.classList.contains('collapsed')); resize();
+});
+
+/* ---------------- Measure tool ---------------- */
+var measuring=false, mPts=[], mGroup=new THREE.Group(), mCount=0; scene.add(mGroup);
+var ray=new THREE.Raycaster(), ndc=new THREE.Vector2(), downXY=null;
+function chainVisible(o){while(o){if(o.visible===false) return false; o=o.parent} return true}
+$('#btnMeasure').addEventListener('click',function(){
+  if(explode>0.001&&!measuring){toast('Set tier separation to 0% to measure'); return}
+  measuring=!measuring; this.setAttribute('aria-pressed',measuring); renderer.domElement.style.cursor=measuring?'crosshair':'';
+  if(measuring) toast('Click a first point on the steel');
+});
+$('#btnClearM').addEventListener('click',function(){
+  while(mGroup.children.length){var c=mGroup.children.pop(); if(c.geometry) c.geometry.dispose()}
+  $('#mlist').innerHTML=''; mPts=[]; mCount=0;
+});
+renderer.domElement.addEventListener('pointerdown',function(e){downXY=[e.clientX,e.clientY]});
+renderer.domElement.addEventListener('pointerup',function(e){
+  if(!measuring||!downXY) return;
+  if(Math.hypot(e.clientX-downXY[0],e.clientY-downXY[1])>5) return;
+  var r=renderer.domElement.getBoundingClientRect();
+  ndc.set(((e.clientX-r.left)/r.width)*2-1,-((e.clientY-r.top)/r.height)*2+1);
+  ray.setFromCamera(ndc,camera);
+  var objs=allMeshes.filter(chainVisible).concat(scafPick.filter(chainVisible)), hit=ray.intersectObjects(objs,false)[0];
+  if(!hit){toast('No steel under the pointer'); return}
+  var p=hit.point.clone(), dot=new THREE.Mesh(new THREE.SphereGeometry(0.1,12,10),new THREE.MeshBasicMaterial({color:col('#DC5F20'),depthTest:false}));
+  dot.position.copy(p); dot.renderOrder=30; mGroup.add(dot); mPts.push(p);
+  if(mPts.length===2){
+    var d=mPts[0].distanceTo(mPts[1]);
+    var g=new THREE.BufferGeometry().setFromPoints(mPts);
+    var ln=new THREE.Line(g,new THREE.LineBasicMaterial({color:col('#DC5F20'),depthTest:false})); ln.renderOrder=30; mGroup.add(ln);
+    var s=textSprite(d.toFixed(2)+' m',1.1,{fs:40}); s.position.copy(mPts[0].clone().add(mPts[1]).multiplyScalar(0.5)); mGroup.add(s);
+    var li=document.createElement('li'); li.innerHTML='<span>Measurement '+(++mCount)+'</span><strong>'+d.toFixed(2)+' m</strong>'; $('#mlist').appendChild(li);
+    mPts=[]; toast('Distance '+d.toFixed(2)+' m. Click to start another.');
+  } else toast('Click the second point');
+});
+
+var xrState={on:false,update:null};  /* set by the WebXR block below */
+/* ---------------- WebXR: Meta Quest 3 and other immersive-vr browsers ----------------
+   Teleport is the default. Smooth locomotion is a switchable option. A tablet on the left
+   controller replaces the side panel, markers become in-world sprites, and a reader card
+   replaces the DOM card. All names are local to this function so nothing can clash with the
+   main scope (an earlier version failed silently on a name clash). */
+(function(){
+var qs; try{ qs=new URLSearchParams(location.search) }catch(e){ qs={get:function(){return null}} }
+var XR_SCALE=Math.min(1.5,Math.max(0.5,parseFloat(qs.get('xrscale'))||1));
+var XR_FFR=(qs.get('ffr')===null)?null:Math.min(1,Math.max(0,parseFloat(qs.get('ffr'))||0));
+
+/* Tunables. Metres, radians and seconds. */
+var START={x:-27,z:-4,yaw:-Math.PI/2};   /* south (lorry yard) side of the holder, facing +X towards it */
+var SPEED=1.5, SNAP=Math.PI/6, DEAD=0.15;
+var ARC_V=16, ARC_G=9.8, ARC_DT=0.03, ARC_N=120;
+var DOMAIN=110, BODY=1.8, STD_R=0.4, COL_R=0.95, DECK_TOL=0.06;
+var PANEL={w:0.36,x:0,y:0.1,z:0.09,tilt:0.5};
+var CARD_W=1.8, CARD_DIST=2.2;
+var CAVEAT='Model is indicative, not to scale, not for construction measurement. Briefing and planning use only.';
+
+renderer.xr.enabled=true;
+renderer.xr.setReferenceSpaceType('local-floor');
+renderer.xr.setFramebufferScaleFactor(XR_SCALE);
+
+var dolly=new THREE.Group(); dolly.name='xrDolly'; scene.add(dolly);
+var mode='teleport', vignetteOn=true, built=false, tab=0, lastT=0, needStart=false, moveAmt=0;
+var headL=new THREE.Vector3(), headQ=new THREE.Quaternion(), headW=new THREE.Vector3(), fwd=new THREE.Vector3(), rgt=new THREE.Vector3();
+var saved={pos:new THREE.Vector3(),quat:new THREE.Quaternion(),near:0.5,far:900,target:new THREE.Vector3(),bg:null,fov:40};
+var rc=new THREE.Raycaster(), ro=new THREE.Vector3(), rd=new THREE.Vector3(), tv=new THREE.Vector3();
+var hov=null, drag=null, curIdx=-1;
+
+/* ---------- Controllers ---------- */
+var ctlGeom=(function(){
+  var g=merge([cyl(0.022,0.016,0.13,10,0,0,0.02,Math.PI/2,0,0),
+               place(new THREE.TorusGeometry(0.05,0.008,6,16),0,0.02,-0.065,Math.PI/2.6,0,0)]);
+  return g;
+})();
+var ctlMat=new THREE.MeshStandardMaterial({color:col('#2b3340'),roughness:0.6,metalness:0.2});
+var ctl=[0,1].map(function(i){
+  var o={obj:renderer.xr.getController(i),grip:renderer.xr.getControllerGrip(i),src:null,hand:'',sel:false,arm:false,snap:true,fwd:false,xb:false};
+  dolly.add(o.obj); dolly.add(o.grip);
+  o.grip.add(new THREE.Mesh(ctlGeom,ctlMat));
+  o.obj.addEventListener('connected',function(e){o.src=e.data; o.hand=e.data.handedness||''; attach()});
+  o.obj.addEventListener('disconnected',function(){o.src=null; o.hand=''; attach()});
+  o.obj.addEventListener('selectstart',function(){o.sel=true; selStart(o)});
+  o.obj.addEventListener('selectend',function(){o.sel=false; selEnd(o)});
+  return o;
+});
+function handOf(h){for(var i=0;i<ctl.length;i++) if(ctl[i].hand===h) return ctl[i]; return null}
+function stick(o){
+  var p=o&&o.src&&o.src.gamepad; if(!p||!p.axes) return {x:0,y:0};
+  var k=p.axes.length>=4?2:0; return {x:p.axes[k]||0,y:p.axes[k+1]||0};
+}
+function pressed(o,i){var p=o&&o.src&&o.src.gamepad; return !!(p&&p.buttons&&p.buttons[i]&&p.buttons[i].pressed)}
+
+/* ---------- Canvas surfaces (panel, reader card) ---------- */
+function makeSurface(w,h,z){
+  var cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+  var tex=new THREE.CanvasTexture(cv); tex.encoding=THREE.sRGBEncoding; tex.anisotropy=4;
+  var mat=new THREE.MeshBasicMaterial({map:tex,transparent:true,depthTest:false,depthWrite:false,side:THREE.DoubleSide});
+  var mesh=new THREE.Mesh(new THREE.PlaneGeometry(1,1),mat); mesh.renderOrder=z; mesh.frustumCulled=false;
+  return {cv:cv,g:cv.getContext('2d'),tex:tex,mesh:mesh,btns:[],hover:-1,dirty:true};
+}
+function btn(S,x,y,w,h,label,state,fn,o){
+  o=o||{}; var i=S.btns.length; S.btns.push({x:x,y:y,w:w,h:h,fn:fn,slider:o.slider||null});
+  var g=S.g, hot=(S.hover===i), isOn=(state===true);
+  roundRect(g,x,y,w,h,16);
+  g.fillStyle=o.fill||(isOn?(hot?'#3b72c4':'#2f5ea8'):(hot?'#27406c':'#17294a')); g.fill();
+  g.lineWidth=3; g.strokeStyle=hot?'#DC5F20':(isOn?'#7ea6e6':'#26395a'); g.stroke();
+  g.fillStyle=isOn?'#ffffff':'#c8d3e6'; g.font='bold '+(o.fs||34)+'px Arial, sans-serif'; g.textBaseline='middle';
+  if(state===true||state===false){
+    g.textAlign='left'; g.fillText(label,x+58,y+h/2+2);
+    g.beginPath(); g.arc(x+30,y+h/2,11,0,7); g.fillStyle=isOn?'#DC5F20':'#0d1830'; g.fill(); g.lineWidth=3; g.strokeStyle=isOn?'#ffffff':'#53647f'; g.stroke();
+  } else { g.textAlign='center'; g.fillText(label,x+w/2,y+h/2+2) }
+  return i;
+}
+function wrapText(g,text,maxW){
+  var words=String(text).split(' '), lines=[], line='';
+  words.forEach(function(w){var t=line?line+' '+w:w; if(g.measureText(t).width>maxW&&line){lines.push(line); line=w} else line=t});
+  if(line) lines.push(line); return lines;
+}
+function para(g,text,x,y,maxW,lh){var ls=wrapText(g,text,maxW); ls.forEach(function(l,i){g.fillText(l,x,y+i*lh)}); return y+ls.length*lh}
+function hitBtn(S,cx,cy){
+  for(var i=S.btns.length-1;i>=0;i--){var b=S.btns[i]; if(cx>=b.x&&cx<=b.x+b.w&&cy>=b.y&&cy<=b.y+b.h) return i}
+  return -1;
+}
+
+/* ---------- DOM state, reused so VR and desktop stay in step ---------- */
+function flip(el,v){ if(!el||el.checked===v) return; el.checked=v; el.dispatchEvent(new Event('change',{bubbles:true})) }
+function chk(sel){var e=$(sel); return {get:function(){return e.checked},set:function(v){flip(e,v)}}}
+var STRUCT=['columns','beams1','beams2','beams3','rails','bracing','finials'];
+var LAYER_BTNS=[
+  ['Structure',{get:function(){return STRUCT.every(function(k){return $('[data-layer="'+k+'"]').checked})},
+                set:function(v){STRUCT.forEach(function(k){flip($('[data-layer="'+k+'"]'),v)})}}],
+  ['Access scaffold',chk('#sOn')], ['Decks',chk('[data-sl="decks"]')], ['Site context',chk('[data-layer="site"]')],
+  ['Finding markers',chk('#cPins')], ['Scaffold notes',chk('#sNotes')], ['Condition colours',chk('#cCond')], ['Column numbers',chk('#cLabels')]
+];
+var PART_BTNS=[['Ring','ring'],['Birdcage','cage'],['Roof','roof'],['Sheeting','wrap'],['Stairs','stairs'],['Hoists','hoist'],['Fans','fans'],['Protection','prot']]
+  .map(function(p){return [p[0],chk('[data-sl="'+p[1]+'"]')]});
+function setStage(v){var e=$('#rStage'); v=Math.max(0,Math.min(STAGES,Math.round(v))); if(+e.value===v) return; e.value=v; e.dispatchEvent(new Event('input',{bubbles:true}))}
+
+/* ---------- Wrist panel ---------- */
+var PW=1024, PH=704, panel=makeSurface(PW,PH,60);
+panel.mesh.scale.set(PANEL.w,PANEL.w*PH/PW,1);
+panel.mesh.rotation.x=-Math.PI/2+PANEL.tilt; panel.mesh.position.set(PANEL.x,PANEL.y,PANEL.z);
+var STAGE_TRACK={x:150,w:704,y:464,h:76};
+function drawPanel(){
+  var S=panel, g=S.g; S.btns=[]; g.clearRect(0,0,PW,PH);
+  roundRect(g,2,2,PW-4,PH-4,28); g.fillStyle='rgba(16,32,58,0.95)'; g.fill(); g.lineWidth=4; g.strokeStyle='#DC5F20'; g.stroke();
+  ['Layers','Scaffold','Move'].forEach(function(t,i){
+    btn(S,24+i*332,18,320,80,t,undefined,function(){tab=i; S.dirty=true},{fill:tab===i?'#DC5F20':null});
+  });
+  var y0=124, col2=[24,520], bw=480, bh=76, pitch=84;
+  g.textAlign='left'; g.textBaseline='alphabetic';
+  if(tab===0){
+    LAYER_BTNS.forEach(function(it,i){
+      btn(S,col2[i%2],y0+Math.floor(i/2)*pitch,bw,bh,it[0],it[1].get(),function(){it[1].set(!it[1].get())});
+    });
+    g.fillStyle='#9db0cc'; g.font='28px Arial, sans-serif'; g.textAlign='left';
+    para(g,'Decks on lets you teleport and walk onto scaffold lifts.',28,y0+4*pitch+30,PW-56,36);
+  } else if(tab===1){
+    PART_BTNS.forEach(function(it,i){
+      btn(S,24+(i%3)*336,y0+Math.floor(i/3)*pitch,320,bh,it[0],it[1].get(),function(){it[1].set(!it[1].get())},{fs:32});
+    });
+    g.fillStyle='#e7edf7'; g.font='bold 32px Arial, sans-serif'; g.textAlign='left'; g.textBaseline='alphabetic';
+    g.fillText('Erection stage: '+stageLabel(scafStage),28,y0+3*pitch+44);
+    btn(S,24,STAGE_TRACK.y,110,STAGE_TRACK.h,'-',undefined,function(){setStage(scafStage-1)},{fs:44});
+    btn(S,890,STAGE_TRACK.y,110,STAGE_TRACK.h,'+',undefined,function(){setStage(scafStage+1)},{fs:44});
+    var T=STAGE_TRACK, si=S.btns.length; S.btns.push({x:T.x-12,y:T.y,w:T.w+24,h:T.h,slider:'stage'});  /* padded so the ends are easy to hit */
+    roundRect(g,T.x,T.y+T.h/2-8,T.w,16,8); g.fillStyle='#26395a'; g.fill();
+    var hx=T.x+T.w*scafStage/STAGES; roundRect(g,T.x,T.y+T.h/2-8,Math.max(16,hx-T.x),16,8); g.fillStyle='#2f5ea8'; g.fill();
+    g.beginPath(); g.arc(hx,T.y+T.h/2,(S.hover===si||drag)?26:22,0,7); g.fillStyle='#DC5F20'; g.fill(); g.lineWidth=4; g.strokeStyle='#ffffff'; g.stroke();
+  } else {
+    btn(S,24,y0,480,bh,'Teleport',mode==='teleport',function(){setMode('teleport')});
+    btn(S,520,y0,480,bh,'Smooth walk',mode==='smooth',function(){setMode('smooth')});
+    btn(S,24,y0+pitch,480,bh,'Comfort vignette',vignetteOn,function(){vignetteOn=!vignetteOn; S.dirty=true});
+    btn(S,520,y0+pitch,230,bh,'Start point',undefined,function(){needStart=true},{fs:28});
+    btn(S,770,y0+pitch,230,bh,'Exit VR',undefined,function(){var s=renderer.xr.getSession(); if(s) s.end()},{fs:30});
+    g.fillStyle='#c8d3e6'; g.font='28px Arial, sans-serif'; g.textAlign='left'; g.textBaseline='alphabetic';
+    ['Right trigger: select, or teleport on release','Right stick: turn 30 degrees, forward to teleport','Left stick: walk in smooth mode','X button: switch teleport or smooth','Point at a deck to teleport onto it (Decks on)'].forEach(function(t,i){g.fillText(t,28,y0+2*pitch+34+i*38)});
+  }
+  /* The caveat is always drawn, whichever tab is open. */
+  g.fillStyle='#DC5F20'; g.fillRect(24,562,8,122);
+  g.fillStyle='#ffffff'; g.font='bold 30px Arial, sans-serif'; g.textAlign='left'; g.textBaseline='alphabetic';
+  para(g,CAVEAT,48,596,PW-90,38);
+  S.tex.needsUpdate=true; S.dirty=false;
+}
+
+/* ---------- Reader card (finding and scaffold note text) ---------- */
+var card=makeSurface(1280,900,61); card.mesh.visible=false; scene.add(card.mesh);
+function drawCard(f){
+  var S=card, W=1280, g=S.g, pad=48, mw=W-pad*2;
+  var isS=(f.kind==='scaf'), lead=isS?'Scaffold note':'Condition finding';
+  /* Measure first, then size the canvas, then paint. */
+  function measure(paint){
+    var yy=40;
+    g.font='bold 30px Arial, sans-serif'; if(paint){g.fillStyle=isS?'#7ea6e6':'#DC5F20'; g.fillText(lead+(f.no?'  '+f.no:'  (no marker, applies to the whole structure)'),pad,yy+30)} yy+=56;
+    g.font='bold 48px Arial, sans-serif'; if(paint) g.fillStyle='#ffffff'; yy=paintLines(g,f.title,pad,yy+44,mw,58,paint);
+    g.font='28px Arial, sans-serif'; if(paint) g.fillStyle='#9db0cc'; yy=paintLines(g,findingRef(f),pad,yy+14+28,mw,36,paint);
+    g.font='34px Arial, sans-serif'; if(paint) g.fillStyle='#e7edf7'; yy=paintLines(g,f.text,pad,yy+24+34,mw,46,paint);
+    if(f.flag){
+      var top=yy+22; g.font='bold 30px Arial, sans-serif'; var a=paintLines(g,FLAG_LEAD,pad+28,top+34,mw-28,40,false);
+      g.font='30px Arial, sans-serif'; var b=paintLines(g,f.flag,pad+28,a+4+30,mw-28,40,false);
+      if(paint){
+        g.fillStyle='rgba(220,95,32,0.16)'; g.fillRect(pad,top,mw,b-top+8); g.fillStyle='#DC5F20'; g.fillRect(pad,top,8,b-top+8);
+        g.fillStyle='#ffffff'; g.font='bold 30px Arial, sans-serif'; paintLines(g,FLAG_LEAD,pad+28,top+34,mw-28,40,true);
+        g.fillStyle='#e7edf7'; g.font='30px Arial, sans-serif'; paintLines(g,f.flag,pad+28,a+4+30,mw-28,40,true);
+      }
+      yy=b+8;
+    }
+    return yy;
+  }
+  function paintLines(gg,text,x,yb,maxW,lh,paint){
+    var ls=wrapText(gg,text,maxW); if(paint) ls.forEach(function(l,i){gg.fillText(l,x,yb+i*lh)});
+    return yb+(ls.length-1)*lh+Math.round(lh*0.35);
+  }
+  S.cv.height=1400; var bodyEnd=measure(false);
+  var H=bodyEnd+40+90+60+50; S.cv.height=H; g=S.g;
+  g.clearRect(0,0,W,H); roundRect(g,3,3,W-6,H-6,32); g.fillStyle='rgba(16,32,58,0.96)'; g.fill(); g.lineWidth=5; g.strokeStyle=isS?'#2f6fb5':'#DC5F20'; g.stroke();
+  g.textAlign='left'; g.textBaseline='alphabetic'; measure(true);
+  S.btns=[]; var by=bodyEnd+30;
+  btn(S,pad,by,360,84,'Previous',undefined,function(){openCard((curIdx+FINDINGS.length-1)%FINDINGS.length)});
+  btn(S,pad+380,by,360,84,'Next',undefined,function(){openCard((curIdx+1)%FINDINGS.length)});
+  btn(S,pad+760,by,mw-760,84,'Close',undefined,function(){closeCard()},{fill:'#8a3d17'});
+  g.fillStyle='#9db0cc'; g.font='24px Arial, sans-serif'; g.textAlign='left'; g.textBaseline='alphabetic';
+  g.fillText(CAVEAT,pad,by+84+44);
+  S.tex.needsUpdate=true; S.dirty=false;
+  card.mesh.scale.set(CARD_W,CARD_W*H/W,1);
+}
+function openCard(i){
+  curIdx=i; var f=FINDINGS[i];
+  card.hover=-1; drawCard(f);
+  /* Place the card in front of the viewer at eye height, turned to face them, and leave it there. */
+  fwd.set(0,0,-1).applyQuaternion(headQ).applyQuaternion(dolly.quaternion); fwd.y=0;
+  if(fwd.lengthSq()<1e-4) fwd.set(0,0,-1); fwd.normalize();
+  card.mesh.position.set(headW.x+fwd.x*CARD_DIST,headW.y-0.05,headW.z+fwd.z*CARD_DIST);
+  card.mesh.rotation.set(0,Math.atan2(-fwd.x,-fwd.z)+Math.PI,0);
+  card.mesh.visible=true; card.mesh.updateMatrixWorld(true);
+  refreshMarkerLook();
+}
+function closeCard(){card.mesh.visible=false; curIdx=-1; refreshMarkerLook()}
+
+/* ---------- World markers (reuse FINDINGS, nothing duplicated) ---------- */
+var markers=[];
+function markerTex(label,isS,hot){
+  var c=document.createElement('canvas'); c.width=c.height=160; var g=c.getContext('2d');
+  var ring=isS?'#2f6fb5':'#DC5F20';
+  g.beginPath(); g.arc(80,80,68,0,7); g.fillStyle=hot?ring:'#ffffff'; g.fill(); g.lineWidth=12; g.strokeStyle=ring; g.stroke();
+  g.fillStyle=hot?'#ffffff':'#14233b'; g.font='bold '+(label.length>2?54:68)+'px Arial, sans-serif'; g.textAlign='center'; g.textBaseline='middle'; g.fillText(label,80,86);
+  var t=new THREE.CanvasTexture(c); t.encoding=THREE.sRGBEncoding; return t;
+}
+function buildMarkers(){
+  if(markers.length) return;
+  FINDINGS.forEach(function(f){
+    if(!f.pos) return;
+    var isS=(f.kind==='scaf'), nrm=markerTex(f.no,isS,false), hot=markerTex(f.no,isS,true);
+    var sp=new THREE.Sprite(new THREE.SpriteMaterial({map:nrm,depthTest:false,transparent:true}));
+    sp.renderOrder=25; sp.visible=false; f.anchor.add(sp);
+    var label=textSprite(f.title+'  '+f.no,1,{fs:40}); label.userData.asp=label.scale.x; label.visible=false; label.renderOrder=45; scene.add(label);
+    markers.push({f:f,sp:sp,tip:label,nrm:nrm,hot:hot,pos:new THREE.Vector3(),size:1,show:false});
+  });
+}
+function refreshMarkerLook(){markers.forEach(function(m){m.sp.material.map=(hov&&hov.kind==='marker'&&hov.m===m)||m.f.idx===curIdx?m.hot:m.nrm})}
+
+/* ---------- Comfort: vignette and a head-locked toast ---------- */
+var vig=(function(){
+  var c=document.createElement('canvas'); c.width=c.height=256; var g=c.getContext('2d');
+  var gr=g.createRadialGradient(128,128,0,128,128,128);
+  gr.addColorStop(0,'rgba(0,0,0,0)'); gr.addColorStop(0.3,'rgba(0,0,0,0)'); gr.addColorStop(0.62,'rgba(0,0,0,0.85)'); gr.addColorStop(1,'rgba(0,0,0,1)');
+  g.fillStyle=gr; g.fillRect(0,0,256,256);
+  var m=new THREE.Mesh(new THREE.PlaneGeometry(14,14),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(c),transparent:true,opacity:0,depthTest:false,depthWrite:false,fog:false}));
+  m.position.set(0,0,-3); m.renderOrder=1000; m.visible=false; m.frustumCulled=false; return m;
+})();
+var toastS=(function(){
+  var cv=document.createElement('canvas'); cv.width=1024; cv.height=128;
+  var t=new THREE.CanvasTexture(cv); t.encoding=THREE.sRGBEncoding;
+  var s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true,depthTest:false,opacity:0}));
+  s.scale.set(0.9,0.1125,1); s.position.set(0,-0.32,-1.2); s.renderOrder=1001; s.userData={cv:cv,tex:t,until:0};
+  return s;
+})();
+function say(msg){
+  var u=toastS.userData, g=u.cv.getContext('2d'); g.clearRect(0,0,1024,128);
+  roundRect(g,4,4,1016,120,24); g.fillStyle='rgba(28,53,93,0.95)'; g.fill(); g.lineWidth=4; g.strokeStyle='#DC5F20'; g.stroke();
+  g.fillStyle='#ffffff'; g.font='bold 46px Arial, sans-serif'; g.textAlign='center'; g.textBaseline='middle'; g.fillText(msg,512,68);
+  u.tex.needsUpdate=true; u.until=performance.now()+2200; toastS.material.opacity=1;
+}
+function setMode(m){mode=m; panel.dirty=true; say(m==='teleport'?'Teleport. Aim, then pull the right trigger':'Smooth walk. Left stick moves, right stick turns')}
+
+/* ---------- Where you may stand: ground and visible scaffold decks, never inside steel ---------- */
+var levels=[], stds=[], colXZ=[], cantXZ=[], chords=[], braceSeg=[], hoistM=null, atpacM=null, roofM=null, atpacXZ=[[-22,3.6],[-21,12.1],[4.8,17.3],[11.5,18]];
+var BEAM_RANGE=[[7.26,8.79],[16.0,17.54],[24.8,26.7]];
+function buildWorld(){
+  if(built) return; built=true;
+  var mm=new THREE.Matrix4(), p=new THREE.Vector3(), q=new THREE.Quaternion(), s=new THREE.Vector3(), d=new THREE.Vector3(), UXv=new THREE.Vector3(1,0,0), byKey={}, i;
+  scafMeshes.forEach(function(m){
+    var u=m.userData;
+    if(u.kind==='deck'){
+      for(i=0;i<m.count;i++){
+        m.getMatrixAt(i,mm); mm.decompose(p,q,s);
+        var ang=2*Math.atan2(q.y,q.w), top=Math.round((p.y+0.0225)*1000)/1000, key=String(top);
+        (byKey[key]=byKey[key]||{y:top,rects:[]}).rects.push({cx:p.x,cz:p.z,c:Math.cos(ang),s:Math.sin(ang),hx:s.x/2,hz:s.z/2,lift:p.y-0.03,mesh:m});
+      }
+    } else if(u.kind==='tube'){
+      if(u.zone==='hoist') hoistM=m; if(u.zone==='atpac') atpacM=m; if(u.zone==='roof') roofM=m;
+      if(u.zone==='roof'||u.zone==='fan') return;
+      for(i=0;i<m.count;i++){
+        m.getMatrixAt(i,mm); mm.decompose(p,q,s); d.copy(UXv).applyQuaternion(q);
+        if(Math.abs(d.y)>0.98&&(p.y-s.x/2)<0.5) stds.push({x:p.x,z:p.z,m:m});
+      }
+    }
+  });
+  levels=Object.keys(byKey).map(function(k){return byKey[k]}).sort(function(a,b){return b.y-a.y});
+  levels.push({y:0,rects:null});
+  for(i=0;i<ALLCOLS.length;i++){var e=ALLCOLS[i].elements; colXZ.push([e[12],e[14]])}
+  for(var k=1;k<=N;k++){
+    var a=theta(k), nx=theta(k+1), A=V(R*Math.cos(a),0,R*Math.sin(a)), B=V(R*Math.cos(nx),0,R*Math.sin(nx));
+    chords.push([A.x,A.z,B.x,B.z]);
+    cantXZ.push([(R-0.945)*Math.cos(a),(R-0.945)*Math.sin(a)]);
+    var t1=tip(k), t2=tip(k+2); braceSeg.push([t1.x,t1.z,t2.x,t2.z]);
+  }
+}
+function segDist(x,z,s){
+  var dx=s[2]-s[0], dz=s[3]-s[1], t=((x-s[0])*dx+(z-s[1])*dz)/(dx*dx+dz*dz); t=Math.max(0,Math.min(1,t));
+  var ex=s[0]+dx*t-x, ez=s[1]+dz*t-z; return Math.sqrt(ex*ex+ez*ez);
+}
+function vis(m){return !!(m&&m.visible)}
+/* True when a standing body from `top` to `top`+BODY at (x,z) would touch steel or a solid. */
+function blocked(x,z,top){
+  var b1=top+BODY, i, dx, dz;
+  if(scafClip.constant>1){
+    for(i=0;i<stds.length;i++){var s=stds[i]; if(!s.m.visible) continue; dx=x-s.x; dz=z-s.z; if(dx*dx+dz*dz<STD_R*STD_R) return true}
+  }
+  if(vis(layerMeshes.columns[0])){
+    for(i=0;i<colXZ.length;i++){dx=x-colXZ[i][0]; dz=z-colXZ[i][1]; if(dx*dx+dz*dz<COL_R*COL_R) return true}
+  }
+  if(vis(layerMeshes.rails[0])&&top<26.8&&b1>26.6){
+    for(i=0;i<cantXZ.length;i++){dx=x-cantXZ[i][0]; dz=z-cantXZ[i][1]; if(dx*dx+dz*dz<0.25) return true}
+  }
+  for(var lv=0;lv<3;lv++){
+    if(vis(layerMeshes['beams'+(lv+1)][0])&&top<BEAM_RANGE[lv][1]&&b1>BEAM_RANGE[lv][0]){
+      for(i=0;i<chords.length;i++) if(segDist(x,z,chords[i])<0.4) return true;
+    }
+  }
+  if(vis(layerMeshes.bracing[0])&&top<PLAN_Y+0.1&&b1>PLAN_Y-0.05){
+    for(i=0;i<braceSeg.length;i++) if(segDist(x,z,braceSeg[i])<0.45) return true;
+  }
+  if(vis(hoistM)&&top<28.5&&Math.abs(z)<1.0&&(Math.abs(x+8)<1.0||Math.abs(x-8.1)<1.0)) return true;
+  if(vis(atpacM)&&top<2.0&&b1>0.2){
+    for(i=0;i<atpacXZ.length;i++) if(Math.abs(x-atpacXZ[i][0])<1.45&&Math.abs(z-atpacXZ[i][1])<1.45) return true;
+  }
+  if(vis(roofM)&&b1>28.8&&b1>roofH(x)-0.15) return true;
+  if(site.visible){
+    for(i=0;i<siteSolids.length;i++){
+      var b=siteSolids[i]; if(top>=b.y1||b1<=b.y0) continue;
+      tv.set(x,0,z).applyMatrix4(b.inv); if(Math.abs(tv.x)<b.hx+0.2&&Math.abs(tv.z)<b.hz+0.2) return true;
+    }
+  }
+  return false;
+}
+/* Footing is judged generously so a small physical step past a deck edge does not drop you. */
+function held(x,z,y){var L=levelFor(y); return !!(L&&L.rects&&deckRect(L,x,z,0.6))}
+function groundOK(x,z){return x*x+z*z<DOMAIN*DOMAIN&&!blocked(x,z,0)}
+function deckRect(L,x,z,pad){
+  var cl=scafClip.constant+0.001;
+  for(var i=0;i<L.rects.length;i++){
+    var r=L.rects[i]; if(!r.mesh.visible||r.lift>cl) continue;
+    var dx=x-r.cx, dz=z-r.cz, lx=dx*r.c-dz*r.s, lz=dx*r.s+dz*r.c;
+    if(Math.abs(lx)<=r.hx+pad&&Math.abs(lz)<=r.hz+pad) return r;
+  }
+  return null;
+}
+function levelFor(y){for(var i=0;i<levels.length;i++) if(Math.abs(levels[i].y-y)<0.03) return levels[i]; return null}
+function walkable(x,z,y){
+  if(y<0.001) return groundOK(x,z);
+  var L=levelFor(y); return !!(L&&L.rects&&deckRect(L,x,z,DECK_TOL)&&!blocked(x,z,L.y));
+}
+/* Ballistic arc from the controller. Returns the first walkable surface it comes down on. */
+var arcPts=new Float32Array((ARC_N+2)*3);
+function crossing(ax,ay,az,bx,by,bz){
+  if(!(by<ay)) return null;
+  for(var k=0;k<levels.length;k++){
+    var L=levels[k], y=L.y; if(!(ay>=y&&by<y)) continue;
+    var f=(ay-y)/(ay-by), x=ax+(bx-ax)*f, z=az+(bz-az)*f;
+    if(y===0) return {x:x,y:0,z:z,ok:groundOK(x,z)};
+    if(deckRect(L,x,z,0)) return {x:x,y:y,z:z,ok:!blocked(x,z,y)};
+  }
+  return null;
+}
+function aim(o,d){
+  var px=o.x,py=o.y,pz=o.z, vx=d.x*ARC_V, vy=d.y*ARC_V, vz=d.z*ARC_V, n=1, hit=null;
+  arcPts[0]=px; arcPts[1]=py; arcPts[2]=pz;
+  for(var i=1;i<=ARC_N;i++){
+    var t=i*ARC_DT, nx=o.x+vx*t, ny=o.y+vy*t-0.5*ARC_G*t*t, nz=o.z+vz*t;
+    hit=crossing(px,py,pz,nx,ny,nz);
+    if(hit){arcPts[n*3]=hit.x; arcPts[n*3+1]=hit.y; arcPts[n*3+2]=hit.z; n++; break}
+    arcPts[n*3]=nx; arcPts[n*3+1]=ny; arcPts[n*3+2]=nz; n++; px=nx; py=ny; pz=nz;
+    if(ny<-2) break;
+  }
+  return {n:n,hit:hit};
+}
+
+/* A straight ray that meets a visible deck wins over the ground arc, so lifts are easy to point at. */
+function rayDeck(o,d){
+  if(Math.abs(d.y)<0.02) return null;
+  var best=null;
+  for(var k=0;k<levels.length-1;k++){
+    var L=levels[k], t=(L.y-o.y)/d.y; if(t<0.3||t>60||(best&&t>=best.t)) continue;
+    var x=o.x+d.x*t, z=o.z+d.z*t; if(!deckRect(L,x,z,0)) continue;
+    best={t:t,x:x,y:L.y,z:z,ok:!blocked(x,z,L.y)};
+  }
+  return best;
+}
+
+/* Arc and ground marker visuals */
+var arcMat=new THREE.MeshBasicMaterial({color:0x3ddc84});
+var arcMesh=new THREE.InstancedMesh(cyl(0.014,0.014,1,5,0,0,0,0,0,Math.PI/2),arcMat,ARC_N);
+arcMesh.frustumCulled=false; arcMesh.visible=false; arcMesh.count=0; scene.add(arcMesh);
+var spot=new THREE.Group(); spot.visible=false; scene.add(spot);
+var spotMat=new THREE.MeshBasicMaterial({color:0x3ddc84,transparent:true,opacity:0.85,side:THREE.DoubleSide,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-4,polygonOffsetUnits:-4});
+(function(){
+  var r1=new THREE.Mesh(new THREE.RingGeometry(0.22,0.3,28),spotMat), r2=new THREE.Mesh(new THREE.CircleGeometry(0.07,16),spotMat);
+  r1.rotation.x=r2.rotation.x=-Math.PI/2; spot.add(r1); spot.add(r2);
+})();
+var laserMat=new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:0.9,depthTest:false});
+var laser=new THREE.Mesh(place(new THREE.BoxGeometry(0.004,0.004,1),0,0,-0.5),laserMat); laser.renderOrder=40; laser.visible=false; laser.frustumCulled=false;
+/* Thickness grows with length so a long ray stays visible. */
+function setLaser(len,op){var w=Math.max(1,len*0.35); laser.scale.set(w,w,len); laserMat.opacity=op}
+var _m4=new THREE.Matrix4(), _p=new THREE.Vector3(), _q2=new THREE.Quaternion(), _s=new THREE.Vector3(), _d2=new THREE.Vector3(), _UX=new THREE.Vector3(1,0,0);
+function drawArc(n,okFlag){
+  var cnt=0;
+  for(var i=0;i<n-1;i++){
+    _d2.set(arcPts[i*3+3]-arcPts[i*3],arcPts[i*3+4]-arcPts[i*3+1],arcPts[i*3+5]-arcPts[i*3+2]);
+    var len=_d2.length(); if(len<1e-4) continue; _d2.multiplyScalar(1/len);
+    _q2.setFromUnitVectors(_UX,_d2);
+    _p.set((arcPts[i*3]+arcPts[i*3+3])/2,(arcPts[i*3+1]+arcPts[i*3+4])/2,(arcPts[i*3+2]+arcPts[i*3+5])/2);
+    _s.set(len,1,1); _m4.compose(_p,_q2,_s); arcMesh.setMatrixAt(cnt++,_m4);
+  }
+  arcMesh.count=cnt; arcMesh.instanceMatrix.needsUpdate=true; arcMat.color.set(okFlag?0x3ddc84:0xff5252); spotMat.color.set(okFlag?0x3ddc84:0xff5252);
+}
+
+/* Move the rig so the head ends up over (x,z) with the floor at y. Yaw is left alone. */
+function placeHead(x,z,y){
+  dolly.position.set(0,y,0); dolly.updateMatrixWorld(true);
+  headW.copy(headL).applyMatrix4(dolly.matrixWorld);
+  dolly.position.x+=x-headW.x; dolly.position.z+=z-headW.z; dolly.updateMatrixWorld(true);
+  headW.copy(headL).applyMatrix4(dolly.matrixWorld);
+}
+function turn(a){
+  var dx=dolly.position.x-headW.x, dz=dolly.position.z-headW.z, c=Math.cos(a), s=Math.sin(a);
+  dolly.position.x=headW.x+dx*c+dz*s; dolly.position.z=headW.z-dx*s+dz*c; dolly.rotation.y+=a;
+  dolly.updateMatrixWorld(true); headW.copy(headL).applyMatrix4(dolly.matrixWorld);
+}
+
+/* ---------- Selection ---------- */
+function canvasPos(S,uv){return {x:uv.x*S.cv.width,y:(1-uv.y)*S.cv.height}}
+function selStart(o){
+  if(o.hand!=='right') return;
+  if(!hov){o.arm=(mode==='teleport'); return}
+  o.arm=false;
+  if(hov.kind==='marker'){openCard(hov.m.f.idx); return}
+  var S=hov.S, i=hov.i; if(i<0) return;
+  var b=S.btns[i];
+  if(b.slider){drag={S:S,id:b.slider}; dragTo(S,hov.cx)} else if(b.fn){b.fn(); S.dirty=true}
+}
+function selEnd(o){
+  if(o.hand!=='right') return;
+  drag=null;
+  if(o.arm&&mode==='teleport'){o.arm=false; var t=lastAim&&lastAim.hit; if(t&&t.ok) teleport(t)}
+  o.arm=false;
+}
+function dragTo(S,cx){var T=STAGE_TRACK; setStage((cx-T.x)/T.w*STAGES); S.dirty=true}
+var lastAim=null;
+function teleport(t){placeHead(t.x,t.z,t.y)}
+
+/* ---------- Session start and end ---------- */
+function attach(){
+  var L=handOf('left'), Rr=handOf('right');
+  if(L&&panel.mesh.parent!==L.obj) L.obj.add(panel.mesh);
+  if(!L&&panel.mesh.parent) panel.mesh.parent.remove(panel.mesh);
+  if(Rr&&laser.parent!==Rr.obj) Rr.obj.add(laser);
+  if(!Rr&&laser.parent) laser.parent.remove(laser);
+}
+var tubeLite=null, liteSwapped=[];
+function onStart(){
+  xrState.on=true; fly=null; controls.enabled=false;
+  saved.pos.copy(camera.position); saved.quat.copy(camera.quaternion); saved.near=camera.near; saved.far=camera.far; saved.target.copy(controls.target); saved.bg=scene.background; saved.fov=camera.fov;
+  camera.near=0.15; camera.far=500;
+  dolly.add(camera); camera.position.set(0,0,0); camera.quaternion.set(0,0,0,1);
+  camera.add(vig); camera.add(toastS);
+  scene.background=col(isDark()?'#10203a':'#bcd0ea');
+  /* Cheaper frames: no shadow pass, open ended tubes. Both are undone on exit. */
+  sun.castShadow=false; shadowPlane.visible=false;
+  if(!tubeLite) tubeLite=place(new THREE.CylinderGeometry(0.024,0.024,1,6,1,true),0,0,0,0,0,Math.PI/2);
+  liteSwapped=[]; scafMeshes.forEach(function(m){if(m.geometry===tubeG){m.geometry=tubeLite; liteSwapped.push(m)}});
+  buildWorld(); buildMarkers(); scene.updateMatrixWorld(true);
+  var bl=renderer.xr.getSession()&&renderer.xr.getSession().renderState.baseLayer;
+  if(bl&&XR_FFR!==null&&'fixedFoveation' in bl) bl.fixedFoveation=XR_FFR;
+  needStart=true; hov=null; drag=null; curIdx=-1; card.mesh.visible=false; panel.dirty=true; moveAmt=0; lastT=0;
+  attach(); refreshMarkerLook();
+}
+function onEnd(){
+  xrState.on=false;
+  camera.remove(vig); camera.remove(toastS); dolly.remove(camera);
+  dolly.position.set(0,0,0); dolly.rotation.set(0,0,0);
+  camera.position.copy(saved.pos); camera.quaternion.copy(saved.quat); camera.near=saved.near; camera.far=saved.far; camera.fov=saved.fov;
+  controls.target.copy(saved.target); controls.enabled=true; controls.update();
+  scene.background=saved.bg;
+  sun.castShadow=true; shadowPlane.visible=true;
+  liteSwapped.forEach(function(m){m.geometry=tubeG}); liteSwapped=[];
+  markers.forEach(function(m){m.sp.visible=false; m.tip.visible=false});
+  arcMesh.visible=false; spot.visible=false; card.mesh.visible=false;
+  resize();
+}
+renderer.xr.addEventListener('sessionstart',onStart);
+renderer.xr.addEventListener('sessionend',onEnd);
+
+/* ---------- Per frame ---------- */
+function update(now,xf){
+  var dt=lastT?Math.min(0.1,(now-lastT)/1000):0.016; lastT=now;
+  var ref=renderer.xr.getReferenceSpace(), vp=(xf&&ref)?xf.getViewerPose(ref):null, i;
+  if(vp){var p=vp.transform.position, q=vp.transform.orientation; headL.set(p.x,p.y,p.z); headQ.set(q.x,q.y,q.z,q.w)}
+  dolly.updateMatrixWorld(true); headW.copy(headL).applyMatrix4(dolly.matrixWorld);
+  if(needStart){needStart=false; dolly.rotation.set(0,START.yaw,0); placeHead(START.x,START.z,0)}
+
+  var Lh=handOf('left'), Rh=handOf('right'), ls=stick(Lh), rs=stick(Rh);
+
+  /* Footing: if the deck under you is hidden or cut away, drop to the ground. */
+  if(dolly.position.y>0.001&&!held(headW.x,headW.z,dolly.position.y)){
+    if(groundOK(headW.x,headW.z)) placeHead(headW.x,headW.z,0); else {dolly.rotation.set(0,START.yaw,0); placeHead(START.x,START.z,0)}
+    say('Deck no longer there, back on the ground');
+  }
+  /* Snap turn on the right stick, forward to teleport. */
+  if(Rh){
+    if(Math.abs(rs.x)>0.7){ if(Rh.snap){Rh.snap=false; turn(rs.x>0?-SNAP:SNAP)} } else if(Math.abs(rs.x)<0.3) Rh.snap=true;
+    if(rs.y<-0.8){ if(Rh.fwd){Rh.fwd=false; if(mode==='teleport'&&!hov&&lastAim&&lastAim.hit&&lastAim.hit.ok) teleport(lastAim.hit)} } else if(rs.y>-0.4) Rh.fwd=true;
+  }
+  /* X on the left controller switches mode. */
+  if(Lh){var xp=pressed(Lh,4); if(xp&&!Lh.xb) setMode(mode==='teleport'?'smooth':'teleport'); Lh.xb=xp}
+  /* Smooth walking on the left stick, relative to where the head faces. */
+  moveAmt=0;
+  if(mode==='smooth'&&Lh){
+    var mag=Math.sqrt(ls.x*ls.x+ls.y*ls.y);
+    if(mag>DEAD){
+      var k=Math.min(1,(mag-DEAD)/(1-DEAD))/mag;
+      fwd.set(0,0,-1).applyQuaternion(headQ).applyQuaternion(dolly.quaternion); fwd.y=0;
+      if(fwd.lengthSq()>1e-4){
+        fwd.normalize(); rgt.set(-fwd.z,0,fwd.x);
+        var mx=(rgt.x*ls.x*k-fwd.x*ls.y*k)*SPEED*dt, mz=(rgt.z*ls.x*k-fwd.z*ls.y*k)*SPEED*dt, y=dolly.position.y;
+        var nx=headW.x+mx, nz=headW.z+mz, moved=true;
+        if(walkable(nx,nz,y)){dolly.position.x+=mx; dolly.position.z+=mz}
+        else if(walkable(nx,headW.z,y)){dolly.position.x+=mx; mz=0}
+        else if(walkable(headW.x,nz,y)){dolly.position.z+=mz; mx=0}
+        else moved=false;
+        if(moved){moveAmt=Math.min(1,Math.sqrt(mx*mx+mz*mz)/(SPEED*dt)); dolly.updateMatrixWorld(true); headW.copy(headL).applyMatrix4(dolly.matrixWorld)}
+      }
+    }
+  }
+
+  /* Pointer from the right controller. Nearest of: panel, card, marker. */
+  hov=null; lastAim=null; var best=1e9, pointing=Rh&&Rh.obj.visible;
+  panel.hoverNew=-1; card.hoverNew=-1;
+  if(pointing){
+    Rh.obj.updateMatrixWorld(true);
+    ro.setFromMatrixPosition(Rh.obj.matrixWorld); rd.set(0,0,-1).transformDirection(Rh.obj.matrixWorld);
+    rc.set(ro,rd); rc.far=60;
+    [panel,card].forEach(function(S){
+      if(!chainVisible(S.mesh)) return;
+      S.mesh.updateMatrixWorld(true);
+      var h=rc.intersectObject(S.mesh,false)[0];
+      if(h&&h.distance<best&&h.uv){var cp=canvasPos(S,h.uv); best=h.distance; hov={kind:'ui',S:S,i:hitBtn(S,cp.x,cp.y),cx:cp.x,cy:cp.y,t:h.distance}}
+    });
+    markers.forEach(function(m){
+      if(!m.show) return;
+      tv.copy(m.pos).sub(ro); var t=tv.dot(rd); if(t<0.3||t>=best) return;
+      tv.copy(rd).multiplyScalar(t).add(ro).sub(m.pos);
+      if(tv.length()<m.size*0.6){best=t; hov={kind:'marker',m:m,t:t}}
+    });
+  }
+  if(drag&&pointing&&hov&&hov.kind==='ui'&&hov.S===drag.S) dragTo(drag.S,hov.cx);
+  [panel,card].forEach(function(S){var h=(hov&&hov.kind==='ui'&&hov.S===S)?hov.i:-1; if(S.hover!==h){S.hover=h; S.dirty=true}});
+
+  /* Laser, arc and ground marker */
+  laser.visible=false; arcMesh.visible=false; spot.visible=false; laserMat.color.set(0xffffff);
+  if(pointing){
+    if(hov){laser.visible=true; setLaser(Math.max(0.05,hov.t),0.9)}
+    else if(mode==='teleport'){
+      var dk=rayDeck(ro,rd);
+      if(dk){
+        lastAim={n:0,hit:dk}; setLaser(dk.t,0.9); laser.visible=true;
+        laserMat.color.set(dk.ok?0x3ddc84:0xff5252); spotMat.color.set(dk.ok?0x3ddc84:0xff5252);
+        spot.position.set(dk.x,dk.y+0.03,dk.z); spot.visible=true;
+      } else {
+        lastAim=aim(ro,rd);
+        if(lastAim.n>1){
+          var okA=!!(lastAim.hit&&lastAim.hit.ok); drawArc(lastAim.n,okA); arcMesh.visible=true;
+          if(lastAim.hit){spot.position.set(lastAim.hit.x,lastAim.hit.y+0.03,lastAim.hit.z); spot.visible=true}
+        }
+      }
+    } else {laser.visible=true; setLaser(0.8,0.35)}
+  }
+
+  /* Markers: same hide rules as the DOM pins, sized by distance so they stay readable. */
+  for(i=0;i<markers.length;i++){
+    var m=markers[i], f=m.f; f.anchor.getWorldPosition(m.pos);
+    var hide=(f.kind==='scaf'?(!scafNotesOn||!scafVisible):!pinsOn)||m.pos.y>cutY;
+    m.show=!hide; m.sp.visible=!hide; if(hide){m.tip.visible=false; continue}
+    var dist=m.pos.distanceTo(headW); m.size=Math.max(0.5,Math.min(3.2,dist*0.055));
+    m.sp.scale.set(m.size,m.size,1);
+    var showTip=!!(hov&&hov.kind==='marker'&&hov.m===m);
+    m.tip.visible=showTip;
+    if(showTip){var th=m.size*0.8; m.tip.scale.set(th*m.tip.userData.asp,th,1); m.tip.position.set(m.pos.x,m.pos.y+m.size*1.1,m.pos.z)}
+  }
+  refreshMarkerLook();
+
+  /* Vignette while walking, toast fade, redraws */
+  var target=(mode==='smooth'&&vignetteOn&&moveAmt>0.05)?0.8:0;
+  vig.material.opacity+=(target-vig.material.opacity)*Math.min(1,dt*8); vig.visible=vig.material.opacity>0.01;
+  var tu=toastS.userData; if(tu.until){var left=tu.until-performance.now(); toastS.material.opacity=left<=0?0:Math.min(1,left/400); if(left<=0) tu.until=0}
+  if(panel.dirty) drawPanel();
+  if(card.dirty&&curIdx>=0) drawCard(FINDINGS[curIdx]);
+}
+xrState.update=update;
+
+/* ---------- Entry button: shown only when immersive-vr is supported ---------- */
+var vrBtn=$('#btnVR'), vrSession=null;
+if(vrBtn&&navigator.xr&&navigator.xr.isSessionSupported){
+  navigator.xr.isSessionSupported('immersive-vr').then(function(ok){if(ok) vrBtn.hidden=false}).catch(function(){});
+  vrBtn.addEventListener('click',function(){
+    if(vrSession){vrSession.end(); return}
+    navigator.xr.requestSession('immersive-vr',{optionalFeatures:['local-floor','bounded-floor']}).then(function(s){
+      vrSession=s; s.addEventListener('end',function(){vrSession=null; vrBtn.textContent='Enter VR'});
+      return renderer.xr.setSession(s).then(function(){vrBtn.textContent='Exit VR'}).catch(function(e){s.end(); throw e});
+    }).catch(function(e){toast('Could not start VR: '+(e&&e.message?e.message:e))});
+  });
+}
+})();
+
+/* ---------------- Resize and loop ---------------- */
+function resize(){
+  if(renderer.xr.isPresenting) return;  /* three.js refuses setSize during a session and warns */
+  var w=stage.clientWidth, h=stage.clientHeight; if(!w||!h) return;
+  renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
+}
+if(window.ResizeObserver) new ResizeObserver(resize).observe(stage); else window.addEventListener('resize',resize);
+resize();
+var tmp=new THREE.Vector3();
+function frame(now,xrFrame){
+  if(xrState.on){ if(xrState.update) xrState.update(now,xrFrame); renderer.render(scene,camera); return }
+  if(fly){
+    var k=Math.min(1,(now-fly.t0)/fly.ms), e=k<0.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
+    camera.position.lerpVectors(fly.p0,fly.p1,e); controls.target.lerpVectors(fly.a0,fly.a1,e);
+    if(k>=1) fly=null;
+  }
+  controls.update();
+  var w=stage.clientWidth, h=stage.clientHeight;
+  for(var i=0;i<FINDINGS.length;i++){
+    var f=FINDINGS[i]; if(!f.el) continue;
+    f.anchor.getWorldPosition(tmp);
+    var hide=(f.kind==='scaf'?(!scafNotesOn||!scafVisible):!pinsOn)||tmp.y>cutY;
+    tmp.project(camera);
+    if(hide||tmp.z>1||Math.abs(tmp.x)>1.1||Math.abs(tmp.y)>1.1){f.el.hidden=true; continue}
+    f.el.hidden=false; f.el.style.transform='translate('+((tmp.x*0.5+0.5)*w).toFixed(1)+'px,'+((-tmp.y*0.5+0.5)*h).toFixed(1)+'px)';
+  }
+  renderer.render(scene,camera);
+}
+renderer.setAnimationLoop(frame);
+})();
+</script>
+</body>
+</html>
