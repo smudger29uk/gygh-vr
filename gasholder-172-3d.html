@@ -1348,6 +1348,8 @@ var XR_FFR=(qs.get('ffr')===null)?null:Math.min(1,Math.max(0,parseFloat(qs.get('
 /* Tunables. Metres, radians and seconds. */
 var START={x:-27,z:-4,yaw:-Math.PI/2};   /* south (lorry yard) side of the holder, facing +X towards it */
 var SPEED=1.5, SNAP=Math.PI/6, DEAD=0.15;
+var FLY_H=3.0, FLY_V=2.0, FLY_MAX=45, flyToastAt=0;
+var HEIGHTS=[['Ground',0],['Tier 1',TIER_TOP[0]],['Tier 2',TIER_TOP[1]],['Crown',TIER_TOP[2]],['Above',TOTAL+4]];
 var ARC_V=16, ARC_G=9.8, ARC_DT=0.03, ARC_N=120;
 var DOMAIN=110, BODY=1.8, STD_R=0.4, COL_R=0.95, DECK_TOL=0.06;
 var PANEL={w:0.36,x:0,y:0.1,z:0.09,tilt:0.5};
@@ -1467,13 +1469,17 @@ function drawPanel(){
     var hx=T.x+T.w*scafStage/STAGES; roundRect(g,T.x,T.y+T.h/2-8,Math.max(16,hx-T.x),16,8); g.fillStyle='#2f5ea8'; g.fill();
     g.beginPath(); g.arc(hx,T.y+T.h/2,(S.hover===si||drag)?26:22,0,7); g.fillStyle='#DC5F20'; g.fill(); g.lineWidth=4; g.strokeStyle='#ffffff'; g.stroke();
   } else {
-    btn(S,24,y0,480,bh,'Teleport',mode==='teleport',function(){setMode('teleport')});
-    btn(S,520,y0,480,bh,'Smooth walk',mode==='smooth',function(){setMode('smooth')});
+    btn(S,24,y0,320,bh,'Teleport',mode==='teleport',function(){setMode('teleport')});
+    btn(S,352,y0,320,bh,'Smooth walk',mode==='smooth',function(){setMode('smooth')});
+    btn(S,680,y0,320,bh,'Fly',mode==='fly',function(){setMode('fly')});
     btn(S,24,y0+pitch,480,bh,'Comfort vignette',vignetteOn,function(){vignetteOn=!vignetteOn; S.dirty=true});
     btn(S,520,y0+pitch,230,bh,'Start point',undefined,function(){needStart=true},{fs:28});
     btn(S,770,y0+pitch,230,bh,'Exit VR',undefined,function(){var s=renderer.xr.getSession(); if(s) s.end()},{fs:30});
+    HEIGHTS.forEach(function(h,i){
+      btn(S,24+i*196,y0+2*pitch,184,bh,h[0],undefined,function(){goHeight(h[1],h[0])},{fs:28});
+    });
     g.fillStyle='#c8d3e6'; g.font='28px Arial, sans-serif'; g.textAlign='left'; g.textBaseline='alphabetic';
-    ['Right trigger: select, or teleport on release','Right stick: turn 30 degrees, forward to teleport','Left stick: walk in smooth mode','X button: switch teleport or smooth','Point at a deck to teleport onto it (Decks on)'].forEach(function(t,i){g.fillText(t,28,y0+2*pitch+34+i*38)});
+    ['Right trigger: select, or teleport on release','Right stick: turn 30 degrees, forward to teleport','Left stick: walk (smooth) or fly level; right stick up or down climbs in fly','X button: cycle teleport, smooth, fly'].forEach(function(t,i){g.fillText(t,28,y0+3*pitch+38+i*38)});
   }
   /* The caveat is always drawn, whichever tab is open. */
   g.fillStyle='#DC5F20'; g.fillRect(24,562,8,122);
@@ -1580,7 +1586,27 @@ function say(msg){
   g.fillStyle='#ffffff'; g.font='bold 46px Arial, sans-serif'; g.textAlign='center'; g.textBaseline='middle'; g.fillText(msg,512,68);
   u.tex.needsUpdate=true; u.until=performance.now()+2200; toastS.material.opacity=1;
 }
-function setMode(m){mode=m; panel.dirty=true; say(m==='teleport'?'Teleport. Aim, then pull the right trigger':'Smooth walk. Left stick moves, right stick turns')}
+function setMode(m){
+  var was=mode; mode=m; panel.dirty=true;
+  if(was==='fly'&&m!=='fly') land();
+  say(m==='teleport'?'Teleport. Aim, then pull the right trigger':m==='smooth'?'Smooth walk. Left stick moves, right stick turns':'Fly. Right stick up or down to change height');
+}
+/* Leaving fly: stand on the highest visible, unblocked deck at or below the current height, else the ground. */
+function land(){
+  var x=headW.x, z=headW.z, y=dolly.position.y, i, L;
+  for(i=0;i<levels.length;i++){
+    L=levels[i]; if(!L.rects||L.y>y+0.03) continue;
+    if(deckRect(L,x,z,DECK_TOL)&&!blocked(x,z,L.y)){placeHead(x,z,L.y); return}
+  }
+  if(groundOK(x,z)){placeHead(x,z,0); return}
+  dolly.rotation.set(0,START.yaw,0); placeHead(START.x,START.z,0);
+  say('No footing here, back at the start point');
+}
+function goHeight(y,label){
+  if(mode!=='fly'){mode='fly'; panel.dirty=true}
+  placeHead(headW.x,headW.z,Math.min(FLY_MAX,Math.max(0,y)));
+  say(label+': floor at '+dolly.position.y.toFixed(1)+' m');
+}
 
 /* ---------- Where you may stand: ground and visible scaffold decks, never inside steel ---------- */
 var levels=[], stds=[], colXZ=[], cantXZ=[], chords=[], braceSeg=[], hoistM=null, atpacM=null, roofM=null, atpacXZ=[[-22,3.6],[-21,12.1],[4.8,17.3],[11.5,18]];
@@ -1821,7 +1847,7 @@ function update(now,xf){
   var Lh=handOf('left'), Rh=handOf('right'), ls=stick(Lh), rs=stick(Rh);
 
   /* Footing: if the deck under you is hidden or cut away, drop to the ground. */
-  if(dolly.position.y>0.001&&!held(headW.x,headW.z,dolly.position.y)){
+  if(mode!=='fly'&&dolly.position.y>0.001&&!held(headW.x,headW.z,dolly.position.y)){
     if(groundOK(headW.x,headW.z)) placeHead(headW.x,headW.z,0); else {dolly.rotation.set(0,START.yaw,0); placeHead(START.x,START.z,0)}
     say('Deck no longer there, back on the ground');
   }
@@ -1831,7 +1857,7 @@ function update(now,xf){
     if(rs.y<-0.8){ if(Rh.fwd){Rh.fwd=false; if(mode==='teleport'&&!hov&&lastAim&&lastAim.hit&&lastAim.hit.ok) teleport(lastAim.hit)} } else if(rs.y>-0.4) Rh.fwd=true;
   }
   /* X on the left controller switches mode. */
-  if(Lh){var xp=pressed(Lh,4); if(xp&&!Lh.xb) setMode(mode==='teleport'?'smooth':'teleport'); Lh.xb=xp}
+  if(Lh){var xp=pressed(Lh,4); if(xp&&!Lh.xb) setMode(mode==='teleport'?'smooth':mode==='smooth'?'fly':'teleport'); Lh.xb=xp}
   /* Smooth walking on the left stick, relative to where the head faces. */
   moveAmt=0;
   if(mode==='smooth'&&Lh){
@@ -1850,6 +1876,34 @@ function update(now,xf){
         if(moved){moveAmt=Math.min(1,Math.sqrt(mx*mx+mz*mz)/(SPEED*dt)); dolly.updateMatrixWorld(true); headW.copy(headL).applyMatrix4(dolly.matrixWorld)}
       }
     }
+  }
+
+  /* Fly: left stick level, right stick up or down changes the floor height. No collision. */
+  if(mode==='fly'){
+    var fm=0;
+    if(Lh){
+      var fmag=Math.sqrt(ls.x*ls.x+ls.y*ls.y);
+      if(fmag>DEAD){
+        var fk=Math.min(1,(fmag-DEAD)/(1-DEAD))/fmag;
+        fwd.set(0,0,-1).applyQuaternion(headQ).applyQuaternion(dolly.quaternion); fwd.y=0;
+        if(fwd.lengthSq()>1e-4){
+          fwd.normalize(); rgt.set(-fwd.z,0,fwd.x);
+          var fx=(rgt.x*ls.x*fk-fwd.x*ls.y*fk)*FLY_H*dt, fz=(rgt.z*ls.x*fk-fwd.z*ls.y*fk)*FLY_H*dt;
+          var ex=headW.x+fx, ez=headW.z+fz;
+          if(ex*ex+ez*ez<DOMAIN*DOMAIN){dolly.position.x+=fx; dolly.position.z+=fz; fm=Math.min(1,Math.sqrt(fx*fx+fz*fz)/(FLY_H*dt))}
+        }
+      }
+    }
+    if(Rh&&Math.abs(rs.y)>DEAD&&Math.abs(rs.y)>1.5*Math.abs(rs.x)){
+      var vk=Math.min(1,(Math.abs(rs.y)-DEAD)/(1-DEAD))*(rs.y<0?1:-1);
+      var ny=Math.min(FLY_MAX,Math.max(0,dolly.position.y+vk*FLY_V*dt));
+      if(Math.abs(ny-dolly.position.y)>1e-6){
+        dolly.position.y=ny; fm=Math.max(fm,Math.abs(vk));
+        if(now-flyToastAt>250){flyToastAt=now; say('Floor height '+ny.toFixed(1)+' m')}
+      }
+    }
+    moveAmt=fm;
+    dolly.updateMatrixWorld(true); headW.copy(headL).applyMatrix4(dolly.matrixWorld);
   }
 
   /* Pointer from the right controller. Nearest of: panel, card, marker. */
@@ -1909,7 +1963,7 @@ function update(now,xf){
   refreshMarkerLook();
 
   /* Vignette while walking, toast fade, redraws */
-  var target=(mode==='smooth'&&vignetteOn&&moveAmt>0.05)?0.8:0;
+  var target=(mode!=='teleport'&&vignetteOn&&moveAmt>0.05)?0.8:0;
   vig.material.opacity+=(target-vig.material.opacity)*Math.min(1,dt*8); vig.visible=vig.material.opacity>0.01;
   var tu=toastS.userData; if(tu.until){var left=tu.until-performance.now(); toastS.material.opacity=left<=0?0:Math.min(1,left/400); if(left<=0) tu.until=0}
   if(panel.dirty) drawPanel();

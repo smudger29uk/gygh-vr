@@ -22,8 +22,10 @@ You start on the south (lorry yard, minus X) side, 27 m from the centre of the h
 | Right ray at a scaffold deck | A straight ray that meets a visible deck teleports you onto that lift. Needs **Decks** on, and only lifts that are erected at the current stage. |
 | Right stick forward | Teleport to the current marker |
 | Right stick left or right | Snap turn, 30 degrees a step, never continuous |
-| X (left) or Move tab | Switch between teleport and smooth walking |
-| Left stick | Walk at about 1.5 m/s in smooth mode, relative to where you face. Optional vignette while moving. |
+| X (left) or Move tab | X cycles teleport, smooth walk, fly, then back to teleport. The Move tab has a button for each. |
+| Left stick | Smooth mode: walk at about 1.5 m/s, relative to where you face. Fly mode: move level at 3 m/s, with no collision, inside the site boundary. Optional vignette while moving in either. |
+| Right stick up or down (fly mode) | Raise or lower the floor at 2 m/s, up to 45 m, with a "Floor height" toast. Only counts when the stick is clearly vertical, so a snap turn never also climbs. |
+| Height buttons (Move tab) | Ground, Tier 1, Tier 2, Crown and Above (4 m over the top) switch to fly mode and set the floor to that height where you stand. |
 | Right ray at a marker | Hover shows its title. Trigger opens the full text in a reader card with Previous, Next and Close. |
 | Left controller panel | Hold your left hand up. Tabs: Layers (structure, access scaffold, decks, site context, markers, notes, condition colours, column numbers), Scaffold (parts and the erection stage slider) and Move. |
 
@@ -52,7 +54,7 @@ Not tested, because it needs the headset:
 
 - Frame rate, comfort and whether 72 or 90 fps holds. Try `?xrscale=0.8` first if it does not.
 - Where the panel sits on the left controller and whether it faces you when you raise your hand. The offsets are the `PANEL` constants near the top of the VR block (x, y, z, tilt).
-- Real Touch button and stick mapping (right stick turn and forward, X to switch mode).
+- Real Touch button and stick mapping (right stick turn, forward and fly climb, X to cycle mode).
 - Text legibility of the panel, cards and markers at real distances.
 - Hand tracking without controllers (not designed for).
 
@@ -62,6 +64,7 @@ Not tested, because it needs the headset:
 - The pointer, teleport and card controls are on the right hand and the panel is on the left. There is no left-handed swap.
 - Shadows are off in VR, so there is less depth cue on the ground.
 - Teleport and walking use simplified clearances (a 0.4 m radius round each standard, 0.95 m round each column, a straight beam and bracing line). They are for orientation, not a clearance check.
+- Leaving fly mode (by X or the Teleport and Smooth buttons) puts you on the highest visible, unblocked deck at or below your height, else on the ground. With Decks off there are no decks to find, so you always land on the ground, and if the ground spot is inside steel or outside the site you return to the start point.
 - Decks are off by default, as on desktop, so lifts are not walkable until you switch them on.
 - Dark sky and ground fade are plain colours. Site context is approximate, as on desktop.
 - The reader card is placed once in front of you and stays there; walk back to it or open another.
