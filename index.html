@@ -224,7 +224,6 @@ ul.plain li{margin:4px 0}
       <label class="check"><input type="checkbox" data-sl="decks"><span>Decks<small>Steel pans. Boarded lifts are not stated, so every lift is shown when this is ticked</small></span></label>
       <label class="check"><input type="checkbox" data-sl="stairs" checked><span>Stair towers</span></label>
       <label class="check"><input type="checkbox" data-sl="hoist" checked><span>Hoist masts</span></label>
-      <label class="check"><input type="checkbox" data-sl="fans" checked><span>Catch fans at 8 m</span></label>
       <label class="check"><input type="checkbox" data-sl="prot" checked><span>Asset and building protection</span></label>
 
       <h2>Colours and markers</h2>
@@ -235,7 +234,6 @@ ul.plain li{margin:4px 0}
         <li><span class="sw" style="background:#3FAE49"></span><span>Splayed access scaffold</span></li>
         <li><span class="sw" style="background:#E5645F"></span><span>Internal birdcage</span></li>
         <li><span class="sw" style="background:#6EE7E7"></span><span>Internal workshop (footprint only)</span></li>
-        <li><span class="sw" style="background:#D61EC2"></span><span>Catch fan</span></li>
         <li><span class="sw" style="background:#F2961C"></span><span>AT-PAC asset protection</span></li>
         <li><span class="sw" style="background:#B88ACB"></span><span>Beamed tube and fitting protection</span></li>
         <li><span class="sw" style="background:#8A7A2E"></span><span>Hoist</span></li>
@@ -818,7 +816,7 @@ var STAGES=17, LV=[2,4,6,8,10,12.5,15,17,19,21,23.5,26,28,29,30.5,32], LEV=[0.2]
 var ZCOL={ring:'#3FAE49',cage:'#E5645F',fan:'#D61EC2',tf:'#B88ACB',atpac:'#F2961C',hoist:'#8A7A2E',stair:'#3FAE49',roof:'#3FAE49'};
 var ZLAYER={ring:'ring',cage:'cage',roof:'roof',stair:'stairs',atpac:'prot',tf:'prot',hoist:'hoist',fan:'fans'};
 var SL={ring:true,cage:true,roof:true,wrap:true,decks:false,fans:true,prot:true,stairs:true,hoist:true};
-var FANS=[[-37,-10],[56,125],[138,160]];
+var FANS=[];   /* catch fans removed from the model; was [[-37,-10],[56,125],[138,160]] (bearing ranges, degrees) */
 var scafMeshes=[], scafPick=[], CAGE_CELLS=[], scafStage=STAGES, scafOn=true, scafVisible=true, scafNotesOn=true, planOn=false;
 function roofH(x){return 32-3*Math.min(Math.abs(x),17.6)/17.6}
 function smat(hex,o){return new THREE.MeshStandardMaterial(Object.assign({color:col(hex),roughness:0.5,metalness:0.5,clippingPlanes:[scafClip]},o||{}))}
@@ -1433,7 +1431,7 @@ var LAYER_BTNS=[
   ['Access scaffold',chk('#sOn')], ['Decks',chk('[data-sl="decks"]')], ['Site context',chk('[data-layer="site"]')],
   ['Finding markers',chk('#cPins')], ['Scaffold notes',chk('#sNotes')], ['Condition colours',chk('#cCond')], ['Column numbers',chk('#cLabels')]
 ];
-var PART_BTNS=[['Ring','ring'],['Birdcage','cage'],['Roof','roof'],['Sheeting','wrap'],['Stairs','stairs'],['Hoists','hoist'],['Fans','fans'],['Protection','prot']]
+var PART_BTNS=[['Ring','ring'],['Birdcage','cage'],['Roof','roof'],['Sheeting','wrap'],['Stairs','stairs'],['Hoists','hoist'],['Protection','prot']]
   .map(function(p){return [p[0],chk('[data-sl="'+p[1]+'"]')]});
 function setStage(v){var e=$('#rStage'); v=Math.max(0,Math.min(STAGES,Math.round(v))); if(+e.value===v) return; e.value=v; e.dispatchEvent(new Event('input',{bubbles:true}))}
 
